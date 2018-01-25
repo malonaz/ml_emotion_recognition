@@ -92,38 +92,4 @@ def choose_best_decision_attribute(examples, attributes, binary_targets):
     
 # test
 binary_targets = map(lambda x: int(x == 1), labels)
-
 print choose_best_decision_attribute(examples, range(45), binary_targets)
-
-
-
-'''
-def create_binary(attribute_vector, emotion_number):
-    bynary_target = []
-    for elm in attribute_vector:
-        if elm == emotion_number:
-            binary_target.append(1)
-        else:
-            bynary_target.append(0)
-
-return binary_target
-
-
-
-def decision_tree_klearning(examples,attributes,binary_target):
-    if same_value(binary_target):
-        return
-    else
-
-
-
-def same_value(tree):
-    value = tree[0]
-    for elm in tree:
-        if elm != value:
-            return false
-        else:
-            return true
-    
-    
-'''
