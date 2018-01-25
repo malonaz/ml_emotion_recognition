@@ -2,8 +2,8 @@ import scipy.io as spio
 import math
 
 
-
-def getMatlabData(filename):
+##### PART I: LOADING DATA
+def load_data(filename):
     """ Returns the labels and examples array from the matlab with the given filename"""
 
     # load raw data
@@ -16,8 +16,19 @@ def getMatlabData(filename):
     return examples, labels
 
 
+def get_binary_targets(labels, label_index):
+    """ Returns a list remapping labels according to the given label_index corresponding to an
+        and emotion. A 1 indicates a positive example at that index & a 0 indicates a negative
+        example.
+    @params:
+        labels: a list of the labels of the corresponding examples. Labels are numbered 1 to 6, the same as
+                the total number of emotions.
+        label_index : the emotion you want to map labels to."""
 
+    return map(lambda label: int(label  == label_index), labels)
+    
 
+##### PART II: CREATING DECISION TREE
 def entropy(positive_count, negative_count):
     """ Returns the entropy of the positive and negative counts """
 
@@ -26,8 +37,6 @@ def entropy(positive_count, negative_count):
     neg_proportion = float(negative_count)/(positive_count + negative_count)
     
     return -pos_proportion*math.log(pos_proportion, 2) - neg_proportion*math.log(neg_proportion, 2)
-
-
 
 
 def information_remainder(examples, attribute_index, binary_targets):
@@ -76,9 +85,6 @@ def information_remainder(examples, attribute_index, binary_targets):
     return pos_proportion*pos_entropy + neg_proportion*neg_entropy
 
 
-
-
-
 def choose_best_decision_attribute(examples, attributes, binary_targets):
     """ Returns the index of the best decision attribute to classify the examples on.
     @params:
@@ -114,11 +120,11 @@ def choose_best_decision_attribute(examples, attributes, binary_targets):
 def test_choose_best_decision_attribute():
 
     # get matlab data
-    examples, labels = getMatlabData("cleandata_students.mat")
+    examples, labels = load_data("cleandata_students.mat")
 
-    # map to class 1
-    binary_targets = map(lambda x: int(x == 1), labels)
-    
+    # generate binary target for emotion 1
+    binary_targets = get_binary_targets(labels, 1)
+
     # find index of best attribute
     print choose_best_decision_attribute(examples, range(45), binary_targets)
 
