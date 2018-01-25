@@ -1,6 +1,9 @@
 import scipy.io as spio
 import math
 from common import *
+from decision_tree import *
+
+
 
 ##### PART I: LOADING DATA
 def load_data(filename):
@@ -59,18 +62,59 @@ def choose_best_decision_attribute(examples, attributes, binary_targets):
                     
     return min_remainder_attribute
 
+
 def majority_value(binary_targets):
     """ Returns the mode of binary_targets. """
 
     # get number of positive and negatives
-    pos = sum(binary_targets) 
-    neg = len(binary_targets) - pos
+    pos_count = sum(binary_targets) 
+    neg_count = len(binary_targets) - pos
 
     # what about equality?
-    return int(pos > neg)
+    return int(pos_count > neg_count)
+
+
+
+def decision_tree_learning(examples, attributes, binary_targets):
+    """ Returns a decision tree for a given target label."""
+
+    # gather information about parameters
+    example_count = len(examples)
+    attribute_count = len(attributes)
+    pos_count = sum(binary_targets)
+
+    # check if examples are already classified
+    if (pos_count == 0 or pos_count == example_count):
+        # all 1s or 0s. so return leaf node with this value
+        return DecisionTree(class_label = binary_targets[0])
+
+    # check if attribute is empty
+    if (attribute_count == 0):
+        # return a leaf node with mode of binary targets
+        return DecisionTree(class_label = majory_value(binary_targets))
+
+    # get the best attribute and the remaining attributes
+    best_attribute_index = choose_best_decision_attribute(examples, attributes, binary_targets)
+
+    # add branch for each value of the best attribute. Here it can only take on two values
 
     
+    
 ##### TESTING
+
+def test_decision_tree_learning():
+    # get matlab data
+    examples, labels = load_data("cleandata_students.mat")
+
+    # generate all 0 binaries
+    binary_targets = get_binary_targets(labels, -1)
+
+    # find index of best attribute
+    print decision_tree_learning(examples, range(45), binary_targets)
+
+test_decision_tree_learning()
+
+        
 def test_choose_best_decision_attribute():
 
     # get matlab data
@@ -84,4 +128,7 @@ def test_choose_best_decision_attribute():
 
 
 # call to test
-test_choose_best_decision_attribute()
+#test_choose_best_decision_attribute()
+
+
+
