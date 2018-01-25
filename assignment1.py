@@ -1,12 +1,21 @@
 import scipy.io as spio
 import math
 
-# load raw data
-mat = spio.loadmat('cleandata_students.mat', squeeze_me=True)
 
-# extract labels and examples from raw data
-labels = mat['y'] # N labels
-examples = mat['x'] # N examples of 45 attributes each.
+
+def getMatlabData(filename):
+    """ Returns the labels and examples array from the matlab with the given filename"""
+
+    # load raw data
+    mat = spio.loadmat(filename, squeeze_me = True)
+
+    # extract labels and examples from raw data
+    examples = mat['x'] # N examples of 45 attributes each.
+    labels = mat['y'] # N labels
+    
+    return examples, labels
+
+
 
 
 def entropy(positive_count, negative_count):
@@ -17,6 +26,9 @@ def entropy(positive_count, negative_count):
     neg_proportion = float(negative_count)/(positive_count + negative_count)
     
     return -pos_proportion*math.log(pos_proportion, 2) - neg_proportion*math.log(neg_proportion, 2)
+
+
+
 
 def information_remainder(examples, attribute_index, binary_targets):
     """ Returns the information gained by classifying the examples on the given attribute.
@@ -64,6 +76,9 @@ def information_remainder(examples, attribute_index, binary_targets):
     return pos_proportion*pos_entropy + neg_proportion*neg_entropy
 
 
+
+
+
 def choose_best_decision_attribute(examples, attributes, binary_targets):
     """ Returns the index of the best decision attribute to classify the examples on.
     @params:
@@ -76,7 +91,6 @@ def choose_best_decision_attribute(examples, attributes, binary_targets):
     # calculate initial entropy
     pos_targets = sum(binary_targets)
     neg_targets = len(binary_targets) - pos_targets
-    print pos_targets, neg_targets
     initial_entropy = entropy(pos_targets, neg_targets)    
     
 
@@ -96,6 +110,17 @@ def choose_best_decision_attribute(examples, attributes, binary_targets):
                     
     return min_remainder_attribute
 
-# test
-binary_targets = map(lambda x: int(x == 1), labels)
-print choose_best_decision_attribute(examples, range(45), binary_targets)
+
+def test_choose_best_decision_attribute():
+
+    # get matlab data
+    examples, labels = getMatlabData("cleandata_students.mat")
+
+    # map to class 1
+    binary_targets = map(lambda x: int(x == 1), labels)
+    
+    # find index of best attribute
+    print choose_best_decision_attribute(examples, range(45), binary_targets)
+
+# call to test
+test_choose_best_decision_attribute()
