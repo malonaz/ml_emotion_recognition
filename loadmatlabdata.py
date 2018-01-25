@@ -42,7 +42,8 @@ def information_remainder(examples, attribute_index, binary_targets):
         else:
             # example does not have attribute
             neg_attribute[binary_targets[i]] += 1
-    
+
+
     # get entropy of examples with positive attribute
     pos_entropy = entropy(pos_attribute[0], pos_attribute[1])
     neg_entropy = entropy(neg_attribute[0], neg_attribute[1])
@@ -52,9 +53,13 @@ def information_remainder(examples, attribute_index, binary_targets):
     neg_count = float(sum(neg_attribute))
 
     # get proportion of positive attributes
-    pos_proportion = pos_count/len(examples)
-    neg_proportion = neg_count/len(examples)
-
+    pos_proportion = pos_count/(pos_count + neg_count)
+    neg_proportion = neg_count/(pos_count + neg_count)
+    
+    # debug print
+    #print "attribute " + str(attribute_index) + ": " + str(pos_attribute) + ", " + str(neg_attribute) + ", " + \
+    #    str(pos_proportion*pos_entropy + neg_proportion*neg_entropy)
+    
     # return remainder entropy
     return pos_proportion*pos_entropy + neg_proportion*neg_entropy
 
@@ -71,8 +76,9 @@ def choose_best_decision_attribute(examples, attributes, binary_targets):
     # calculate initial entropy
     pos_targets = sum(binary_targets)
     neg_targets = len(binary_targets) - pos_targets
+    print pos_targets, neg_targets
     initial_entropy = entropy(pos_targets, neg_targets)    
-
+    
 
     # find the attribute with the smallest information_remainder
     min_remainder = information_remainder(examples, 0, binary_targets)
@@ -87,9 +93,9 @@ def choose_best_decision_attribute(examples, attributes, binary_targets):
             # update remainder info
             min_remainder = current_remainder
             min_remainder_attribute  = i
-
+                    
     return min_remainder_attribute
-    
+
 # test
 binary_targets = map(lambda x: int(x == 1), labels)
 print choose_best_decision_attribute(examples, range(45), binary_targets)
