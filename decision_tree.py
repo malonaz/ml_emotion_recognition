@@ -20,6 +20,15 @@ class DecisionTree:
         self.label = None
 
 
-        
+    def set_label(label):
+        """ set this label to the given label. """
+
+        self.label = label
+
+
+    def add_kid(kid):
+        """ adds a kid to the kids field. kid is a DecisionTree """
+
+        self.kids.append(kid)
 
         
