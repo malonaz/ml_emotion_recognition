@@ -29,8 +29,6 @@ def get_binary_targets(labels, label_index):
     
 
 ##### PART II: CREATING DECISION TREE
-
-
 def choose_best_decision_attribute(examples, attributes, binary_targets):
     """ Returns the index of the best decision attribute to classify the examples on.
     @params:
@@ -49,7 +47,6 @@ def choose_best_decision_attribute(examples, attributes, binary_targets):
     # find the attribute with the smallest information_remainder
     min_remainder = information_remainder(examples, 0, binary_targets)
     min_remainder_attribute = 0
-
         
     for i in range(1, len(attributes)):
         # get remainder for this attribute
@@ -62,8 +59,17 @@ def choose_best_decision_attribute(examples, attributes, binary_targets):
                     
     return min_remainder_attribute
 
+def majority_value(binary_targets):
+    """ Returns the mode of binary_targets. """
 
+    # get number of positive and negatives
+    pos = sum(binary_targets) 
+    neg = len(binary_targets) - pos
 
+    # what about equality?
+    return int(pos > neg)
+
+    
 ##### TESTING
 def test_choose_best_decision_attribute():
 
