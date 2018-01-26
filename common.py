@@ -5,11 +5,22 @@ import math
 def entropy(positive_count, negative_count):
     """ Returns the entropy of the positive and negative counts """
 
-    # get the proportion of negative and positive examples
-    pos_proportion = float(positive_count)/(positive_count + negative_count)
-    neg_proportion = float(negative_count)/(positive_count + negative_count)
+    if (positive_count == 0):
+        left = 0
+    else:
+        # gget proportion of negative and positive examples
+        pos_proportion = float(positive_count)/(positive_count + negative_count)
+        left = -pos_proportion*math.log(pos_proportion, 2)
+
+
+    if (negative_count == 0):
+        right = 0
+    else:
+        # get the proportion of negative examples
+        neg_proportion = float(negative_count)/(positive_count + negative_count)
+        right = -neg_proportion*math.log(neg_proportion, 2)
     
-    return -pos_proportion*math.log(pos_proportion, 2) - neg_proportion*math.log(neg_proportion, 2)
+    return left + right
 
 
 def information_remainder(examples, attribute_index, binary_targets):
@@ -36,7 +47,6 @@ def information_remainder(examples, attribute_index, binary_targets):
         else:
             # example does not have attribute
             neg_attribute[binary_targets[i]] += 1
-
 
     # get entropy of examples with positive attribute
     pos_entropy = entropy(pos_attribute[0], pos_attribute[1])
