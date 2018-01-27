@@ -130,8 +130,10 @@ def test_decision_tree_learning():
     binary_targets = get_binary_targets(labels, 1)
     
     tree = decision_tree_learning(examples, range(45), binary_targets)
+    
+    return tree
 
-test_decision_tree_learning()
+# test_decision_tree_learning()
 
         
 def test_choose_best_decision_attribute():
@@ -151,3 +153,14 @@ def test_choose_best_decision_attribute():
 
 
 
+def test_print_graph():
+    # get matlab data
+    examples, labels = load_data("cleandata_students.mat")
+
+    # generate binary target for emotion 1
+    binary_targets = get_binary_targets(labels, 1)
+    
+    tree = decision_tree_learning(examples, range(45), binary_targets)
+    tree.generate_graph()
+
+test_print_graph()

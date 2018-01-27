@@ -1,4 +1,4 @@
-
+from print_tree import *
 
 class DecisionTree:
     """ Represents a decision tree.         
@@ -27,8 +27,26 @@ class DecisionTree:
 
 
     def add_kid(self, kid):
-        """ adds a kid to the kids field. kid is a DecisionTree """
+        """ adds a kid to the kids field. kid is a DecisionTree."""
 
         self.kids.append(kid)
+
+
+    def __str__(self):
+        """ overrides the str operator for a decision tree."""
+
+        if self.test:
+            return str(self.test)
+        
+        return str(self.class_label)
+
+
+    def generate_graph(self):
+        """ generates a dot file representing this tree."""
+
+        # open file, write code into it, then close it
+        f = open("graph.dot", "w")
+        f.write(get_graph(self))
+        f.close()
 
         
