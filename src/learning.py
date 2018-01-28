@@ -172,6 +172,18 @@ def test_performance(tree, emotion, test_data, binary_targets):
     return float(tests_passed)/len(test_data)
     
 
+def classify_example(trees, example):
+    """ returns a list of each tree's classification of the given example."""
+    return map(lambda tree: tree.evaluate(example), trees)
+
+
+def test_trees(trees, examples):
+    """ takes trained treesa and a list of examples. Returns a vector of label predictions."""
+
+    # use each tree to classify each example
+    trees_result = map(lambda example: classify_example(trees, example), examples)
+    print tree_result
+
 ##### TESTING
 
 def test_decision_tree_learning():
@@ -259,5 +271,6 @@ def test_test_performance():
 
     print ans
 
-test_test_performance()
+#test_test_performance()
 
+    
