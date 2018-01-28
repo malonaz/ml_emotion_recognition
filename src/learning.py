@@ -3,9 +3,12 @@ import math
 from common import *
 from decision_tree import *
 
-#### DATA FILES
+#### DATA PARAMETERS
 CLEAN_DATA_STUDENTS = "data/cleandata_students.mat"
 NOISY_DATA_STUDENTS = "data/noisydata_students.mat"
+NUM_ATTRIBUTES = 45
+ATTRIBUTE_NUM_VALUES = 2 # binary so 2
+
 
 ##### PART I: LOADING DATA
 def load_data(filename):
@@ -102,7 +105,7 @@ def decision_tree_learning(examples, attributes, binary_targets):
     tree = DecisionTree(test = best_attribute_index)
     
     # add branch for each value of the best attribute. Here it can only take on two values
-    for value in range(2):
+    for value in range(ATTRIBUTE_NUM_VALUES):
         
         # get the examples and binary targets that match this value of the best attribute
         examples_i = [examples[i] for i in range(example_count) if examples[i][best_attribute_index] == value]
@@ -118,8 +121,7 @@ def decision_tree_learning(examples, attributes, binary_targets):
             subtree = decision_tree_learning(examples_i, remaining_attributes[:], binary_targets_i)
             tree.add_kid(subtree)
 
-    return tree
-    
+    return tree    
         
     
 ##### TESTING
@@ -131,7 +133,7 @@ def test_decision_tree_learning():
     # generate binary target for emotion 1
     binary_targets = get_binary_targets(labels, 1)
     
-    tree = decision_tree_learning(examples, range(45), binary_targets)
+    tree = decision_tree_learning(examples, range(NUM_ATTRIBUTES), binary_targets)
     
     return tree
 
@@ -147,7 +149,7 @@ def test_choose_best_decision_attribute():
     binary_targets = get_binary_targets(labels, 6)
 
     # find index of best attribute
-    print choose_best_decision_attribute(examples, range(45), binary_targets)
+    print choose_best_decision_attribute(examples, range(NUM_ATTRIBUTES), binary_targets)
 
 
 # call to test
@@ -162,7 +164,7 @@ def test_print_graph():
     # generate binary target for emotion 1
     binary_targets = get_binary_targets(labels, 1)
     
-    tree = decision_tree_learning(examples, range(45), binary_targets)
+    tree = decision_tree_learning(examples, range(NUM_ATTRIBUTES), binary_targets)
     tree.generate_graph("graphs/graph.dot")
 
 test_print_graph()
