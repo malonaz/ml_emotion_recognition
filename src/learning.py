@@ -157,6 +157,20 @@ def train_trees():
     return trained_trees
 
 
+def test_performance(tree, emotion, test_data, binary_targets):
+    """ returns the error rate of the tree classifier on the test data."""
+
+    tests_passed = 0
+    
+    for i in range(len(test_data)):
+        tree_result = tree.evaluate(test_data[i])
+        real_result = binary_targets[i]
+        
+        if tree_result == real_result:
+            tests_passed += 1
+            
+    return float(tests_passed)/len(test_data)
+    
 
 ##### TESTING
 
@@ -216,5 +230,34 @@ def test_trained_trees():
         results = map(lambda tree: tree.evaluate(example),trained_trees)
 
     
-test_trained_trees()
+#test_trained_trees()
+
+def test_test_performance():
+    # get matlab data
+    examples, labels = load_data(CLEAN_DATA_STUDENTS)
+
+    # split the data k ways
+    k_folds = get_k_folds(examples, labels)
+
+
+    # train on first fold
+    examples, labels = k_folds[0]
+    
+    # generate binary target for emotion 1
+    binary_targets = get_binary_targets(labels, 1)
+
+    # train tree
+    tree = decision_tree_learning(examples, range(len(examples[0])), binary_targets)
+
+    # now evaluate the tree using the second fold
+    test_examples, test_labels = k_folds[1]
+
+    # generate binay target for emotion 1
+    test_binary_targets = get_binary_targets(test_labels, 1)
+    
+    ans = test_performance(tree, 1, test_examples, test_binary_targets)
+
+    print ans
+
+test_test_performance()
 
