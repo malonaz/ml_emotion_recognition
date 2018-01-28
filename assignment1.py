@@ -3,7 +3,9 @@ import math
 from common import *
 from decision_tree import *
 
-
+#### DATA FILES
+CLEAN_DATA_STUDENTS = "data/cleandata_students.mat"
+NOISY_DATA_STUDENTS = "data/noisydata_students.mat"
 
 ##### PART I: LOADING DATA
 def load_data(filename):
@@ -139,7 +141,7 @@ def test_decision_tree_learning():
 def test_choose_best_decision_attribute():
 
     # get matlab data
-    examples, labels = load_data("cleandata_students.mat")
+    examples, labels = load_data(CLEAN_DATA_STUDENT)
 
     # generate binary target for emotion 1
     binary_targets = get_binary_targets(labels, 6)
@@ -155,7 +157,7 @@ def test_choose_best_decision_attribute():
 
 def test_print_graph():
     # get matlab data
-    examples, labels = load_data("cleandata_students.mat")
+    examples, labels = load_data(CLEAN_DATA_STUDENTS)
 
     # generate binary target for emotion 1
     binary_targets = get_binary_targets(labels, 1)
