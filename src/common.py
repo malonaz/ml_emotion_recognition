@@ -69,27 +69,32 @@ def information_remainder(examples, attribute_index, binary_targets):
     return pos_proportion*pos_entropy + neg_proportion*neg_entropy
 
 
-def get_k_folds(data, k = 10):
+def get_k_folds(examples, labels, k = 10):
     """ Splits the given data into k folds and returns it as a list."""
 
     # used to store the k folds
     k_folds = []
 
     # size of a fold
-    fold_size = len(data)/k
+    fold_size = len(examples)/k
     
     for i in range(k):
-        current_fold = []
+        fold_examples = []
+        fold_labels = []
         
-        while (len(current_fold) < fold_size):
-            # generate a random index of data
-            index_to_pop = random.randrange(len(data))
+        while (len(fold_examples) < fold_size):
 
-            # pop the datum at this point adn append it to current_fold
-            current_fold.append(data.pop(index_to_pop))
+            # generate a random index of examples
+            index_to_pop = random.randrange(len(examples))
 
-        # current_fold is complete. append to k_folds   
-        k_folds.append(current_fold)
+            # pop the example at this index and append it to current fold examples
+            fold_examples.append(examples.pop(index_to_pop))
+
+            # pop the corresponding label and append it to current fold label
+            fold_labels.append(labels.pop(index_to_pop))
+
+        # fold is complete. append to k_folds   
+        k_folds.append([fold_examples, fold_labels])
         
     return k_folds
     
