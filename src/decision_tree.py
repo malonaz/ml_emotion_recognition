@@ -50,8 +50,8 @@ class DecisionTree:
         return "[label=" + str(self) + "]"        
 
     
-    def generate_graph(self):
-        """ generates a dot file representing this tree."""
+    def generate_graph(self, filename):
+        """ generates a dot file representing this tree with the given filename."""
 
         graph_type = "digraph"
         name = "tree_of_class_"
@@ -63,7 +63,7 @@ class DecisionTree:
         text = "%s %s{\n\n%s\n%s\n}" %(graph_type, name, setup, code)
         
         # open file, write text into it, then close it
-        f = open("graph.dot", "w")
+        f = open(filename, "w")
         f.write(text)
         f.close()
 

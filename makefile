@@ -6,11 +6,11 @@
 .PHONY: test clean
 
 graph:
-	dot graph.dot -Tpdf -o graph.pdf
+	dot graphs/graph.dot -Tpdf -o graphs/graph.pdf
 
 test:
-	python assignment1.py
+	python src/assignment1.py
 
 
 clean:
-	rm *.pyc *.pdf *.dot
+	rm -rf src/*.pyc graphs/*
