@@ -156,10 +156,6 @@ def train_trees():
 
     return trained_trees
         
-    
-    
-
-    
 train_trees()
 
 
