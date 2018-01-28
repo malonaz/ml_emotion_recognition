@@ -57,12 +57,13 @@ class DecisionTree:
         graph_type = "digraph"
         name = "tree_of_class_"
         setup = "node [shape=box, font=Courier]\n"
-        code = self.get_edges()
+        root_node = self.get_id() + self.get_label() + "\n" 
+        code = root_node + self.get_edges()
 
         # put text together
         text = "%s %s{\n\n%s\n%s\n}" %(graph_type, name, setup, code)
         
-        # open file, write code into it, then close it
+        # open file, write text into it, then close it
         f = open("graph.dot", "w")
         f.write(text)
         f.close()
@@ -71,25 +72,23 @@ class DecisionTree:
     def get_edges(self):
         """ returns text declaring the nodes and their edges in dot format."""
         
-        if (len(self.kids) != 0):
-            # node is not a leaf
-            
-            node = self.get_id() + self.get_label() + "\n"
-            node_left = self.kids[0].get_id() + self.kids[0].get_label() + "\n"            
-            node_right = self.kids[1].get_id() + self.kids[1].get_label() + "\n"
-            
-            edge1 = self.get_id() + " -> " + self.kids[0].get_id() + "\n"
-            edge2 = self.get_id() + " -> " + self.kids[1].get_id() + "\n"
+        if (len(self.kids) == 0):
+            # leaf node has no edge
+            return ""
 
-            rest = self.kids[0].get_edges() + self.kids[1].get_edges()
-            
-            if (self.id == 0):
-                return node + node_left + node_right + edge1 + edge2 + rest
-            else:
-                return node_left + node_right + edge1 + edge2 + rest
-            
+        #  get the dot declaration of both children
+        node_left = self.kids[0].get_id() + self.kids[0].get_label() + "\n"            
+        node_right = self.kids[1].get_id() + self.kids[1].get_label() + "\n"
 
-        return ""
+        # get the dot declaration of edges to children
+        edge1 = self.get_id() + " -> " + self.kids[0].get_id() + "\n"
+        edge2 = self.get_id() + " -> " + self.kids[1].get_id() + "\n"
+
+        # recursively get the kids' node and edges information
+        rest = self.kids[0].get_edges() + self.kids[1].get_edges()
+        
+        return node_left + node_right + edge1 + edge2 + rest
+        
 
     
-
+    
