@@ -30,6 +30,20 @@ class DecisionTree:
         self.kids.append(kid)
 
 
+    def evaluate(self, example):
+        """ Returns the classification of the given example using this tree."""
+
+        if (self.class_label != None):
+            # this is leaf node
+            return self.class_label
+
+        # apply this node's test on the example
+        result = example[self.test]
+
+        # recursively go down the appropriate branch of this tree
+        return self.kids[result].evaluate(example)
+
+        
     def __str__(self):
         """ overrides the str operator for a decision tree."""
 
@@ -44,6 +58,7 @@ class DecisionTree:
         
         return str(self.id)
 
+    
     def get_label(self):
         """ Returns this node's label for graphing purposes."""
         

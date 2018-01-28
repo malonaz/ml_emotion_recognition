@@ -155,10 +155,6 @@ def train_trees():
         trained_trees.append(trained_tree)
 
     return trained_trees
-        
-train_trees()
-
-
 
 
 
@@ -206,3 +202,19 @@ def test_print_graph():
     tree.generate_graph("graphs/graph.dot")
 
 #test_print_graph()
+
+
+def test_trained_trees():
+    # get trained trees
+    trained_trees = train_trees()
+
+    # get examples and labels
+    examples, labels = load_data(CLEAN_DATA_STUDENTS)
+
+    for example in examples:
+        # evalue the current example through all 6 trained trees
+        results = map(lambda tree: tree.evaluate(example),trained_trees)
+
+    
+test_trained_trees()
+
