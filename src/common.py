@@ -72,9 +72,13 @@ def information_remainder(examples, attribute_index, binary_targets):
 def get_k_folds(examples, labels, k = 10):
     """ Splits the given data into k folds and returns it as a list."""
 
+    # convert examples to list. (they might be in numpy array format). this does not modify originals!
+    examples = list(examples)
+    labels = list(labels)
+    
     # used to store the k folds
     k_folds = []
-
+    
     # size of a fold
     fold_size = len(examples)/k
     
