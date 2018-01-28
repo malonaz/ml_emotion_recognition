@@ -75,19 +75,16 @@ class DecisionTree:
             # leaf node has no edge
             return ""
 
-        #  get the dot declaration of both children
-        node_left = self.kids[0].get_id() + self.kids[0].get_label() + "\n"            
-        node_right = self.kids[1].get_id() + self.kids[1].get_label() + "\n"
+        #  get the dot format information about this subtree's edges
+        edges_info = ""
+        for i in range(len(self.kids)):
+            # get declaration of child node in dot format
+            edges_info += self.kids[i].get_id() + self.kids[i].get_label() + "\n"
+            # get declaration of edge in dot format
+            edges_info += self.get_id() + " -> " + self.kids[i].get_id() + "[label=" + str(i) + "]\n"
+            # make recursive call to get info about this kid's edge
+            edges_info += self.kids[i].get_edges()
 
-        # get the dot declaration of edges to children
-        edge1 = self.get_id() + " -> " + self.kids[0].get_id() + "[label=no]\n" 
-        edge2 = self.get_id() + " -> " + self.kids[1].get_id() + "[label=yes]\n" 
-
-        # recursively get the kids' node and edges information
-        rest = self.kids[0].get_edges() + self.kids[1].get_edges()
-        
-        return node_left + node_right + edge1 + edge2 + rest
-        
-
+        return edges_info
     
     
