@@ -1,4 +1,3 @@
-from print_tree import *
 
 class DecisionTree:
     """ Represents a decision tree.         
@@ -81,8 +80,8 @@ class DecisionTree:
         node_right = self.kids[1].get_id() + self.kids[1].get_label() + "\n"
 
         # get the dot declaration of edges to children
-        edge1 = self.get_id() + " -> " + self.kids[0].get_id() + "\n"
-        edge2 = self.get_id() + " -> " + self.kids[1].get_id() + "\n"
+        edge1 = self.get_id() + " -> " + self.kids[0].get_id() + "[label=no]\n" 
+        edge2 = self.get_id() + " -> " + self.kids[1].get_id() + "[label=yes]\n" 
 
         # recursively get the kids' node and edges information
         rest = self.kids[0].get_edges() + self.kids[1].get_edges()
