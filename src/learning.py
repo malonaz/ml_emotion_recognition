@@ -8,6 +8,7 @@ CLEAN_DATA_STUDENTS = "data/cleandata_students.mat"
 NOISY_DATA_STUDENTS = "data/noisydata_students.mat"
 NUM_ATTRIBUTES = 45
 ATTRIBUTE_NUM_VALUES = 2 # binary so 2
+NUM_CLASSES = 6
 
 
 ##### PART I: LOADING DATA
@@ -123,7 +124,48 @@ def decision_tree_learning(examples, attributes, binary_targets):
 
     return tree    
         
+##### PART III: EVALUATION
+
+def train_trees():
+    """ uses the clean dataset provided to train 6 trees, one for each emotion and generate
+        graphs for them (in Graph folder). Returns a list of these six trees."""
+
+    # used to store the trained trees
+    trained_trees = []
     
+    # get clean data set
+    examples, labels = load_data(CLEAN_DATA_STUDENTS)
+
+    for i in range(NUM_CLASSES):
+
+        # get emotion number. [1,2,3,4,5,6]
+        emotion = i + 1
+        
+        # generate binary targets for current emotion
+        binary_targets = get_binary_targets(labels, emotion)
+
+        # train tree
+        trained_tree = decision_tree_learning(examples, range(NUM_ATTRIBUTES), binary_targets)
+
+        # generate a graph for this tree
+        filename = "graphs/emotion" + str(emotion) + ".dot"
+        trained_tree.generate_graph(filename)
+
+        # add it to trained trees
+        trained_trees.append(trained_tree)
+
+    return trained_trees
+        
+    
+    
+
+    
+train_trees()
+
+
+
+
+
 ##### TESTING
 
 def test_decision_tree_learning():
@@ -167,4 +209,4 @@ def test_print_graph():
     tree = decision_tree_learning(examples, range(NUM_ATTRIBUTES), binary_targets)
     tree.generate_graph("graphs/graph.dot")
 
-test_print_graph()
+#test_print_graph()
