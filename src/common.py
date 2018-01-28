@@ -1,5 +1,6 @@
 import scipy.io as spio
 import math
+import random
 
 ##### HELPER FUNCTIONS
 def entropy(positive_count, negative_count):
@@ -67,4 +68,29 @@ def information_remainder(examples, attribute_index, binary_targets):
     # return remainder entropy
     return pos_proportion*pos_entropy + neg_proportion*neg_entropy
 
+
+def get_k_folds(data, k = 10):
+    """ Splits the given data into k folds and returns it as a list."""
+
+    # used to store the k folds
+    k_folds = []
+
+    # size of a fold
+    fold_size = len(data)/k
+    
+    for i in range(k):
+        current_fold = []
+        
+        while (len(current_fold) < fold_size):
+            # generate a random index of data
+            index_to_pop = random.randrange(len(data))
+
+            # pop the datum at this point adn append it to current_fold
+            current_fold.append(data.pop(index_to_pop))
+
+        # current_fold is complete. append to k_folds   
+        k_folds.append(current_fold)
+        
+    return k_folds
+    
 
