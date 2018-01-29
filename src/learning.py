@@ -1,7 +1,8 @@
-import scipy.io as spio
-import math
 from common import *
 from decision_tree import *
+import scipy.io as spio
+import math
+import sys
 
 #### DATA PARAMETERS
 CLEAN_DATA_STUDENTS = "data/cleandata_students.mat"
@@ -273,4 +274,15 @@ def test_test_performance():
 
 #test_test_performance()
 
+def main(argv):
+    if (len(argv) == 1):
+        return 0
+    
+    if (argv[1] == "graphs"):
+        test_trained_trees()
+        
+    
+
+if __name__ == "__main__":
+    main(sys.argv)
     

@@ -1,21 +1,26 @@
+
+
+#### FOR GRAPHS 
+
 GRAPHS_DIR = graphs/
-GRAPHS_OBJECTS = $(wildcard $(GRAPHS_DIR)*.dot)
+GRAPHS_OBJECTS = graphs/emotion1.dot graphs/emotion2.dot graphs/emotion3.dot graphs/emotion4.dot graphs/emotion5.dot graphs/emotion6.dot
 
 
-
-.PHONY: graphs test clean $(GRAPHS_OBJECTS)
-
+$(GRAPHS_OBJECTS): 
+	python src/learning.py graphs
 
 $(GRAPHS_OBJECTS:.dot=.pdf): %.pdf : %.dot
 	dot $< -Tpdf -o $@
 
-graphs: $(GRAPHS_OBJECTS:.dot=.pdf)
+graphs:  $(GRAPHS_OBJECTS:.dot=.pdf)
 
 
-test: 
-	python src/learning.py
+
+### PHONY
+
+.PHONY: graphs test clean 
+
 
 clean:
 	rm -rf src/*.pyc graphs/*
 
-$(patsubst %.c,%.o,$(wildcard *.c))
