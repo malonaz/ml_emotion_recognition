@@ -6,7 +6,8 @@ GRAPHS_DIR = graphs/
 GRAPHS_OBJECTS = graphs/emotion1.dot graphs/emotion2.dot graphs/emotion3.dot graphs/emotion4.dot graphs/emotion5.dot graphs/emotion6.dot
 
 
-$(GRAPHS_OBJECTS): 
+$(GRAPHS_OBJECTS):
+	mkdir -p graphs
 	python src/learning.py graphs
 
 $(GRAPHS_OBJECTS:.dot=.pdf): %.pdf : %.dot
