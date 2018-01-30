@@ -6,23 +6,18 @@ import random
 def entropy(positive_count, negative_count):
     """ Returns the entropy of the positive and negative counts """
 
-    if (positive_count == 0):
-        left = 0
-    else:
-        # gget proportion of negative and positive examples
-        pos_proportion = float(positive_count)/(positive_count + negative_count)
-        left = -pos_proportion*math.log(pos_proportion, 2)
-
-
-    if (negative_count == 0):
-        right = 0
-    else:
-        # get the proportion of negative examples
-        neg_proportion = float(negative_count)/(positive_count + negative_count)
-        right = -neg_proportion*math.log(neg_proportion, 2)
+    if (positive_count == 0 or negative_count == 0):
+        # no entropy!
+        return 0
     
-    return left + right
+    
+    # get weights of negative and positive examples
+    pos_weight = float(positive_count)/(positive_count + negative_count)
+    neg_weight = float(negative_count)/(positive_count + negative_count)
 
+    # compute entropy
+    return -pos_weight*math.log(pos_weight, 2) - neg_weight*math.log(neg_weight, 2)
+        
 
 def information_remainder(examples, attribute_index, binary_targets):
     """ Returns the information gained by classifying the examples on the given attribute.
@@ -57,16 +52,16 @@ def information_remainder(examples, attribute_index, binary_targets):
     pos_count = float(sum(pos_attribute))
     neg_count = float(sum(neg_attribute))
 
-    # get proportion of positive attributes
-    pos_proportion = pos_count/(pos_count + neg_count)
-    neg_proportion = neg_count/(pos_count + neg_count)
+    # get weight of positive attributes
+    pos_weight = pos_count/(pos_count + neg_count)
+    neg_weight = neg_count/(pos_count + neg_count)
     
     # debug print
     #print "attribute " + str(attribute_index) + ": " + str(pos_attribute) + ", " + str(neg_attribute) + ", " + \
-    #    str(pos_proportion*pos_entropy + neg_proportion*neg_entropy)
+    #    str(pos_weight*pos_entropy + neg_weight*neg_entropy)
     
     # return remainder entropy
-    return pos_proportion*pos_entropy + neg_proportion*neg_entropy
+    return pos_weight*pos_entropy + neg_weight*neg_entropy
 
 
 def get_k_folds(examples, labels, k = 10):
