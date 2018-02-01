@@ -93,9 +93,10 @@ def classify_example(trees, example):
 
 
 def test_trees(trees, examples):
-    """ takes trained treesa and a list of examples. Returns a vector of label predictions."""
+    """ takes trained trees and a list of examples. Returns a vector of label predictions."""
 
     # use each tree to classify each example
-    trees_result = map(lambda example: classify_example(trees, example), examples)
-    print tree_result
+    predictions = map(lambda example: classify_example(trees, example), examples)
+
+    return predictions
 
