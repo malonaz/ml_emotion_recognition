@@ -124,9 +124,8 @@ def decision_tree_learning(examples, attributes, binary_targets):
         
 ##### PART III: EVALUATION
 
-def train_trees(dataset, generate_graphs = False):
-    """ uses the given dataset to train 6 trees, one for each emotion and generates
-        graphs for them (in Graph folder) if param generate_graphs is True. 
+def train_trees(dataset):
+    """ uses the given dataset to train 6 trees, one for each emotion and  
         Returns a list of these six trees."""
 
     # used to store the trained trees
@@ -146,16 +145,25 @@ def train_trees(dataset, generate_graphs = False):
         # train tree
         trained_tree = decision_tree_learning(examples, range(NUM_ATTRIBUTES), binary_targets)
 
-        # generate a graph for this tree if needed
-        if generate_graphs:
-            filename = "graphs/emotion" + str(emotion) + ".dot"
-            trained_tree.generate_graph(filename)
-
         # add it to trained trees
         trained_trees.append(trained_tree)
 
     return trained_trees
 
+def visualize_trees(trees):
+    """ generates graphs for each trained tree (one for each emotion) in the graphs folder."""
+
+    for i in range(len(trees)):
+
+        # get emotion number [1, 2, 3, 4, 5, 6]
+        emotion = i + 1
+
+        # compute filename
+        filename = "graphs/emotion" + str(emotion) + ".dot"
+
+        # generate graph
+        trees[i].generate_graph(filename)
+    
 
 def test_performance(tree, emotion, test_data, binary_targets):
     """ returns the error rate of the tree classifier on the test data."""
@@ -169,6 +177,7 @@ def test_performance(tree, emotion, test_data, binary_targets):
 
 def classify_example(trees, example):
     """ returns a list of each tree's classification of the given example."""
+    
     return map(lambda tree: tree.evaluate(example), trees)
 
 
@@ -266,15 +275,4 @@ def test_test_performance():
 
 #test_test_performance()
 
-def main(argv):
-    if (len(argv) == 1):
-        return 0
-    
-    if (argv[1] == "graphs"):
-        test_trained_trees()
-        
-    
-
-if __name__ == "__main__":
-    main(sys.argv)
     

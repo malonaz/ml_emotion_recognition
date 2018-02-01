@@ -8,7 +8,7 @@ GRAPHS_OBJECTS = graphs/emotion1.dot graphs/emotion2.dot graphs/emotion3.dot gra
 
 $(GRAPHS_OBJECTS):
 	mkdir -p graphs
-	python src/learning.py graphs
+	python src/main.py
 
 $(GRAPHS_OBJECTS:.dot=.pdf): %.pdf : %.dot
 	dot $< -Tpdf -o $@
