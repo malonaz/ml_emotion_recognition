@@ -1,6 +1,7 @@
 from data_loader import *
 from training import *
 from random import randrange
+from numpy import zeros
 
 ##### PART III: EVALUATION
 
@@ -131,7 +132,7 @@ def get_confusion_matrix(predictions, labels):
     """ returns confusion matrix implied by the predictions versus the labels."""
 
     # create a 6 by 6 matrix filled with 0s
-    confusion_matrix = [[0 for x in range(6)] for y in range(6)] 
+    confusion_matrix = zeros((6, 6), int)
 
     for i in range(len(predictions)):
 
@@ -189,6 +190,31 @@ def cross_validation(examples, labels, k = 10):
 
 def get_recall_precision_rates(confusion_matrix):
     """ Computes the recall and precision rates for each class and returns
-        a list of tuples (recall rate, precision rate). """
+        a list [recall rates, precision rates]. """
 
+    # used to store the recall and precision rates
+    recall_rates = []
+    precision_rates = []
+    
+    for i in range(confusion_matrix.shape[0]):
+
+        # get the ith row and column
+        row = confusion_matrix[i, :]
+        col = confusion_matrix[:, i]
+
+        # compute TP, FP and FN
+        TP = float(row[i])
+        FP = float(sum(col) - TP)
+        FN = float(sum(row) - TP)
+        
+        # compute recall rate and add it to recall rates
+        recall_rates.append((100*TP)/(TP + FN))
+
+        # compute precision rate and add it to precision rates
+        precision_rates.append((100*TP)/(TP + FP))
+
+    return recall_rates, precision_rates
+        
+        
+        
     
