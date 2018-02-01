@@ -215,6 +215,8 @@ def get_recall_precision_rates(confusion_matrix):
 
     return recall_rates, precision_rates
         
-        
-        
-    
+
+def get_f_measure(precision_rate, recall_rate, alpha = 2):
+    """ Computes the F_a measure and returns it. """
+
+    return ((1 + alpha)*precision_rate*recall_rate)/(alpha*precision_rate + recall_rate)
