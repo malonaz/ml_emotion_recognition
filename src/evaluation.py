@@ -121,7 +121,7 @@ def get_error_rate(predictions, labels):
     """ returns the error rates of the predictions versus the labels."""
     
     # for each data point, check if the tree's evaluation matches its binary_target
-    results = [predictions[i] == labels[i] for i in range(len(predictions))]
+    results = [predictions[i] != labels[i] for i in range(len(predictions))]
 
     # return the ratio of matches to data points
     return float(sum(results))/len(results)
@@ -193,8 +193,8 @@ def get_recall_precision_rates(confusion_matrix):
         a list [recall rates, precision rates]. """
 
     # used to store the recall and precision rates
-    recall_rates = []
-    precision_rates = []
+    recall_rates = zeros(6, float)
+    precision_rates = zeros(6, float)
     
     for i in range(confusion_matrix.shape[0]):
 
@@ -208,10 +208,10 @@ def get_recall_precision_rates(confusion_matrix):
         FN = float(sum(row) - TP)
         
         # compute recall rate and add it to recall rates
-        recall_rates.append((100*TP)/(TP + FN))
+        recall_rates[i] = (100*TP)/(TP + FN)
 
         # compute precision rate and add it to precision rates
-        precision_rates.append((100*TP)/(TP + FP))
+        precision_rates[i] = (100*TP)/(TP + FP)
 
     return recall_rates, precision_rates
         
