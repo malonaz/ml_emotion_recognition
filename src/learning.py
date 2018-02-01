@@ -1,9 +1,9 @@
 from helpers import *
 from decision_tree import *
-import scipy.io as spio
+from scipy.io import loadmat
 from random import randrange
-import math
 import sys
+
 
 #### DATA PARAMETERS
 CLEAN_DATA_STUDENTS = "data/cleandata_students.mat"
@@ -124,15 +124,16 @@ def decision_tree_learning(examples, attributes, binary_targets):
         
 ##### PART III: EVALUATION
 
-def train_trees():
-    """ uses the clean dataset provided to train 6 trees, one for each emotion and generate
-        graphs for them (in Graph folder). Returns a list of these six trees."""
+def train_trees(dataset, generate_graphs = False):
+    """ uses the given dataset to train 6 trees, one for each emotion and generates
+        graphs for them (in Graph folder) if param generate_graphs is True. 
+        Returns a list of these six trees."""
 
     # used to store the trained trees
     trained_trees = []
     
     # get clean data set
-    examples, labels = load_data(CLEAN_DATA_STUDENTS)
+    examples, labels = load_data(dataset)
 
     for i in range(NUM_CLASSES):
 
@@ -145,9 +146,10 @@ def train_trees():
         # train tree
         trained_tree = decision_tree_learning(examples, range(NUM_ATTRIBUTES), binary_targets)
 
-        # generate a graph for this tree
-        filename = "graphs/emotion" + str(emotion) + ".dot"
-        trained_tree.generate_graph(filename)
+        # generate a graph for this tree if needed
+        if generate_graphs:
+            filename = "graphs/emotion" + str(emotion) + ".dot"
+            trained_tree.generate_graph(filename)
 
         # add it to trained trees
         trained_trees.append(trained_tree)
@@ -158,17 +160,12 @@ def train_trees():
 def test_performance(tree, emotion, test_data, binary_targets):
     """ returns the error rate of the tree classifier on the test data."""
 
-    tests_passed = 0
-    
-    for i in range(len(test_data)):
-        tree_result = tree.evaluate(test_data[i])
-        real_result = binary_targets[i]
-        
-        if tree_result == real_result:
-            tests_passed += 1
-            
-    return float(tests_passed)/len(test_data)
-    
+    # for each data point, check if the tree's evaluation matches its binary_target
+    results = [tree.evaluate(test_data[i]) == binary_targets[i] for i in range(len(test_data))]
+
+    # return the ratio of matches to data points
+    return float(sum(results))/len(results)
+
 
 def classify_example(trees, example):
     """ returns a list of each tree's classification of the given example."""
@@ -225,12 +222,10 @@ def test_print_graph():
     tree = decision_tree_learning(examples, range(NUM_ATTRIBUTES), binary_targets)
     tree.generate_graph("graphs/graph.dot")
 
-#test_print_graph()
-
 
 def test_trained_trees():
     # get trained trees
-    trained_trees = train_trees()
+    trained_trees = train_trees(CLEAN_DATA_STUDENTS, True)
 
     # get examples and labels
     examples, labels = load_data(CLEAN_DATA_STUDENTS)
