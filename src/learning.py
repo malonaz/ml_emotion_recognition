@@ -1,6 +1,7 @@
 from helpers import *
 from decision_tree import *
 import scipy.io as spio
+from random import randrange
 import math
 import sys
 
@@ -37,9 +38,7 @@ def get_binary_targets(labels, label_index):
     return map(lambda label: int(label  == label_index), labels)
 
 
-
-
-##### PART II: CREATING DECISION TREE
+##### PART II: TRAINING DECISION TREE
 def choose_best_decision_attribute(examples, attributes, binary_targets):
     """ Returns the index of the best decision attribute to classify the examples on.
     @params:
@@ -72,7 +71,10 @@ def majority_value(binary_targets):
     pos_count = sum(binary_targets) 
     neg_count = len(binary_targets) - pos_count
 
-    # what about equality?
+    if pos_count == neg_count:
+       # generate random number 
+        return randrange(0, 2)
+    
     return int(pos_count > neg_count)
 
 
