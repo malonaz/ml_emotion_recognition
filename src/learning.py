@@ -1,8 +1,10 @@
 from common import *
 from decision_tree import *
+from entropy import *
 import scipy.io as spio
 import math
 import sys
+
 
 #### DATA PARAMETERS
 CLEAN_DATA_STUDENTS = "data/cleandata_students.mat"
@@ -78,7 +80,6 @@ def majority_value(binary_targets):
 
     # what about equality?
     return int(pos_count > neg_count)
-
 
 
 def decision_tree_learning(examples, attributes, binary_targets):
