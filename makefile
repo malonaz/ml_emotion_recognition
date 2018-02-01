@@ -23,5 +23,5 @@ graphs:  $(GRAPHS_OBJECTS:.dot=.pdf)
 
 
 clean:
-	rm -rf src/*.pyc graphs/*
+	rm -rf src/*.pyc graphs/* output/*.txt
 
