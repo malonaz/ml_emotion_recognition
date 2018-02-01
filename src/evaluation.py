@@ -128,8 +128,21 @@ def get_error_rate(predictions, labels):
 
 
 def get_confusion_matrix(predictions, labels):
-    """ returns the error rates of the predictions versus the labelss."""
-    return 01
+    """ returns confusion matrix implied by the predictions versus the labels."""
+
+    # create a 6 by 6 matrix filled with 0s
+    confusion_matrix = [[0 for x in range(6)] for y in range(6)] 
+
+    for i in range(len(predictions)):
+
+        # get the actual and predicted for prediction
+        actual = labels[i]
+        predicted = predictions[i]
+
+        # increment the appropriate 
+        confusion_matrix[actual - 1][predicted - 1] += 1
+    
+    return confusion_matrix
     
     
 def cross_validation(examples, labels, k = 10):
