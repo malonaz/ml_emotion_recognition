@@ -48,7 +48,7 @@ class DecisionTree:
         """ overrides the str operator for a decision tree."""
 
         if self.test != None:
-            return "\"AU" + str(self.test) + "\""
+            return "\"AU" + str(self.test + 1) + "\""
             
         return "\"Emotion: " + str(self.class_label) + "\""
 
