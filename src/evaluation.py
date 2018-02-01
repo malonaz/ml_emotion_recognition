@@ -55,7 +55,7 @@ def get_k_folds(examples, labels, k = 10):
     
     # size of a fold
     fold_size = len(examples)/k
-    
+
     for i in range(k):
         fold_examples = []
         fold_labels = []
@@ -63,7 +63,7 @@ def get_k_folds(examples, labels, k = 10):
         while (len(fold_examples) < fold_size):
 
             # generate a random index of examples
-            index_to_pop = random.randrange(len(examples))
+            index_to_pop = randrange(len(examples))
 
             # pop the example at this index and append it to current fold examples
             fold_examples.append(examples.pop(index_to_pop))
@@ -88,7 +88,7 @@ def test_performance(tree, emotion, test_data, binary_targets):
 
 
 def classify_example(trees, example):
-    """ returns a list of each tree's classification of the given example."""
+    """ returns a prediction of the example's class using the given trees."""
 
     # get each tree's classification of the given example
     predictions = map(lambda tree: tree.evaluate(example), trees)
@@ -115,3 +115,47 @@ def test_trees(trees, examples):
 
     return predictions
 
+
+def get_error_rate(predictions, labels):
+    """ returns the error rates of the predictions versus the labels."""
+    
+    # for each data point, check if the tree's evaluation matches its binary_target
+    results = [predictions[i] == labels[i] for i in range(len(predictions))]
+
+    # return the ratio of matches to data points
+    return float(sum(results))/len(results)
+
+
+
+def get_confusion_matrix(predictions, labels):
+    """ returns the error rates of the predictions versus the labelss."""
+    
+    
+def cross_validation(examples, labels, k = 10):
+    """ performs k-fold cross validations. """
+
+    # get k_folds
+    k_folds = get_k_folds(examples, labels, k)
+
+    # used to store the total error rate
+    total_error_rate = 0
+    
+    for i in range(k):
+
+        # get test data
+        test_examples, test_labels = k_folds[i]
+
+        # get training data
+        training_examples = reduce(lambda x, y: x + ([] if y == i else k_folds[y][0]), range(k), [])
+        training_labels = reduce(lambda x, y: x + ([] if y == i else k_folds[y][1]), range(k), [])
+
+        # train trees of trained data
+        trained_trees = train_trees(training_examples, training_labels)
+
+        # get predictions using trained trees
+        predictions = test_trees(trained_trees, test_examples)
+        
+        # compute error rate add it to the total error rate
+        total_error_rate += get_error_rate(predictions, test_labels)/k
+    
+    return total_error_rates

@@ -1,4 +1,5 @@
 TODO
+how to split 1004 into 10 folds?
 
 2) Error function
    see page 9
