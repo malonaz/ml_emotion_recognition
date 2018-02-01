@@ -16,12 +16,11 @@ $(GRAPHS_OBJECTS:.dot=.pdf): %.pdf : %.dot
 graphs:  $(GRAPHS_OBJECTS:.dot=.pdf)
 
 
-
 ### PHONY
 
-.PHONY: graphs test clean 
+.PHONY: graphs test clean report
 
 
 clean:
-	rm -rf src/*.pyc graphs/* output/*.txt
+	rm -rf src/*.pyc graphs/* output/*.txt report/*
 
