@@ -144,7 +144,7 @@ def get_confusion_matrix(predictions, labels):
     
     return confusion_matrix
     
-    
+
 def cross_validation(examples, labels, k = 10):
     """ performs k-fold cross validations.
         Returns confusion matrix and average error rate"""
@@ -185,3 +185,10 @@ def cross_validation(examples, labels, k = 10):
     confusion_matrix = get_confusion_matrix(total_predictions, total_labels)
     
     return confusion_matrix, average_error_rate
+
+
+def get_recall_precision_rates(confusion_matrix):
+    """ Computes the recall and precision rates for each class and returns
+        a list of tuples (recall rate, precision rate). """
+
+    
