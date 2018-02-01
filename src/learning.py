@@ -1,18 +1,15 @@
-from common import *
+from helpers import *
 from decision_tree import *
-from entropy import *
 import scipy.io as spio
 import math
 import sys
-
 
 #### DATA PARAMETERS
 CLEAN_DATA_STUDENTS = "data/cleandata_students.mat"
 NOISY_DATA_STUDENTS = "data/noisydata_students.mat"
 NUM_ATTRIBUTES = 45
-ATTRIBUTE_NUM_VALUES = 2 # binary so 2
+ATTRIBUTE_NUM_VALUES = 2 # we are dealing with binary numbers
 NUM_CLASSES = 6
-
 
 ##### PART I: LOADING DATA
 def load_data(filename):
@@ -38,7 +35,9 @@ def get_binary_targets(labels, label_index):
         label_index : the emotion you want to map labels to."""
 
     return map(lambda label: int(label  == label_index), labels)
-    
+
+
+
 
 ##### PART II: CREATING DECISION TREE
 def choose_best_decision_attribute(examples, attributes, binary_targets):
