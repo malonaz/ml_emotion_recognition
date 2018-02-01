@@ -129,16 +129,22 @@ def get_error_rate(predictions, labels):
 
 def get_confusion_matrix(predictions, labels):
     """ returns the error rates of the predictions versus the labelss."""
+    return 01
     
     
 def cross_validation(examples, labels, k = 10):
-    """ performs k-fold cross validations. """
+    """ performs k-fold cross validations.
+        Returns confusion matrix and average error rate"""
 
     # get k_folds
     k_folds = get_k_folds(examples, labels, k)
 
-    # used to store the total error rate
-    total_error_rate = 0
+    # used to store the average error rate
+    average_error_rate = 0
+
+    # used to store total predictions and total test labels
+    total_predictions = []
+    total_labels = []
     
     for i in range(k):
 
@@ -156,6 +162,13 @@ def cross_validation(examples, labels, k = 10):
         predictions = test_trees(trained_trees, test_examples)
         
         # compute error rate add it to the total error rate
-        total_error_rate += get_error_rate(predictions, test_labels)/k
+        average_error_rate += get_error_rate(predictions, test_labels)/k
+
+        # add predictions and test_labels to their respective totals
+        total_predictions += predictions
+        total_labels += test_labels
+        
+    # compute confusion matrix
+    confusion_matrix = get_confusion_matrix(total_predictions, total_labels)
     
-    return total_error_rates
+    return confusion_matrix, average_error_rate
