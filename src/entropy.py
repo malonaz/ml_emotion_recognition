@@ -1,21 +1,22 @@
 from math import log
 
-def entropy(positive_count, negative_count):
-    """ Returns the entropy of the positive and negative counts """
+def entropy(binary_targets):
+    """ Returns the entropy of the given binary targets """
 
-    if (positive_count == 0 or negative_count == 0):
+    # get pos and neg count
+    pos_count = sum(binary_targets)
+    neg_count = len(binary_targets) - pos_count
+    
+    if (pos_count == 0 or neg_count == 0):
         # no entropy!
         return 0
     
-    
     # get weights of negative and positive examples
-    pos_weight = float(positive_count)/(positive_count + negative_count)
-    neg_weight = float(negative_count)/(positive_count + negative_count)
+    pos_weight = float(pos_count)/(pos_count + neg_count)
+    neg_weight = float(neg_count)/(pos_count + neg_count)
 
     # compute entropy
     return -pos_weight*log(pos_weight, 2) - neg_weight*log(neg_weight, 2)
-        
-
 
 def information_remainder(examples, attribute_index, binary_targets):
     """ Returns the information gained by classifying the examples on the given attribute.
@@ -26,38 +27,21 @@ def information_remainder(examples, attribute_index, binary_targets):
                         is a positive match.
     """
 
-    # format: [num of examples that are a class match, num of examples that are not]
-    pos_attribute = [0, 0]
-    neg_attribute = [0, 0]
+    # separate the binary targets that have the given attribute from those who don't
+    pos = [binary_targets[i] for i in range(len(examples)) if examples[i][attribute_index]]
+    neg = [binary_targets[i] for i in range(len(examples)) if not examples[i][attribute_index]]
     
-    for i in range(len(examples)):
-        # get example
-        example = examples[i]
-        
-        if (example[attribute_index] == 1):
-            # example has attribute.
-            pos_attribute[binary_targets[i]] +=1
-            
-        else:
-            # example does not have attribute
-            neg_attribute[binary_targets[i]] += 1
-
     # get entropy of examples with positive attribute
-    pos_entropy = entropy(pos_attribute[0], pos_attribute[1])
-    neg_entropy = entropy(neg_attribute[0], neg_attribute[1])
+    pos_entropy = entropy(pos)
+    neg_entropy = entropy(neg)
 
     # get total positive and total negative attributes
-    pos_count = float(sum(pos_attribute))
-    neg_count = float(sum(neg_attribute))
+    pos_count = float(len(pos))
+    neg_count = float(len(neg))
 
     # get weight of positive attributes
     pos_weight = pos_count/(pos_count + neg_count)
     neg_weight = neg_count/(pos_count + neg_count)
-    
-    # debug print
-    #print "attribute " + str(attribute_index) + ": " + str(pos_attribute) + ", " + str(neg_attribute) + ", " + \
-    #    str(pos_weight*pos_entropy + neg_weight*neg_entropy)
-    
-    # return remainder entropy
+        
+    # return weighted average entropy
     return pos_weight*pos_entropy + neg_weight*neg_entropy
-

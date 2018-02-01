@@ -50,12 +50,6 @@ def choose_best_decision_attribute(examples, attributes, binary_targets):
                         is a positive match.
     """
 
-    # calculate initial entropy
-    pos_targets = sum(binary_targets)
-    neg_targets = len(binary_targets) - pos_targets
-    initial_entropy = entropy(pos_targets, neg_targets)    
-    
-
     # find the attribute with the smallest information_remainder
     min_remainder_attribute = attributes[0]
     min_remainder = information_remainder(examples, attributes[0], binary_targets)
@@ -70,6 +64,7 @@ def choose_best_decision_attribute(examples, attributes, binary_targets):
             min_remainder_attribute  = attribute
 
     return min_remainder_attribute
+
 
 def majority_value(binary_targets):
     """ Returns the mode of binary_targets. """

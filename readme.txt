@@ -1,5 +1,5 @@
 TODO
-
+	majority values: case equality?
 
 
 1) Implement class method for decision_tree_object.
