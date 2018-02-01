@@ -1,5 +1,6 @@
 from data_loader import *
 from training import *
+from random import randrange
 
 ##### PART III: EVALUATION
 
@@ -88,8 +89,22 @@ def test_performance(tree, emotion, test_data, binary_targets):
 
 def classify_example(trees, example):
     """ returns a list of each tree's classification of the given example."""
-    
-    return map(lambda tree: tree.evaluate(example), trees)
+
+    # get each tree's classification of the given example
+    predictions = map(lambda tree: tree.evaluate(example), trees)
+
+    # get the indices of predictions that are a match
+    pos_predictions = [i + 1 for i in range(len(predictions)) if predictions[i]]
+
+    if (pos_predictions == []):
+        # no match with any tree. return random value between 1 and 6
+        return randrange(1, 7)
+
+    # generate a random index of the non-empty pos_prediction list
+    random_index = randrange(len(pos_predictions))
+
+    return pos_predictions[random_index]
+
 
 
 def test_trees(trees, examples):
