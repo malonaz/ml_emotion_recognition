@@ -16,6 +16,16 @@ $(GRAPHS_OBJECTS:.dot=.pdf): %.pdf : %.dot
 graphs:  $(GRAPHS_OBJECTS:.dot=.pdf)
 
 
+#### REPORT
+
+report:
+	make report/report.pdf
+
+report/report.pdf: report/report.tex
+	pdflatex $<
+	mv report.pdf report/report.pdf
+	rm -rf report.*
+
 ### PHONY
 
 .PHONY: graphs test clean report
