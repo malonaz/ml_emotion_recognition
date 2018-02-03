@@ -21,7 +21,7 @@ graphs:  $(GRAPHS_OBJECTS:.dot=.pdf)
 report:
 	make report/report.pdf
 
-report/report.pdf: report/report.tex
+report/report.pdf: src/report.tex
 	pdflatex $<
 	mv report.pdf report/report.pdf
 	rm -rf report.*
