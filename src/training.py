@@ -122,9 +122,8 @@ def decision_tree_learning(examples, attributes, binary_targets):
         binary_targets_i = [binary_targets[i] for i in range(example_count) if examples[i][best_attribute_index] == value]
 
         if (len(examples_i) == 0):
-            # create a leaf node with examples mode value
-            leaf = DecisionTree(class_label = majority_value(binary_targets))
-            tree.add_kid(leaf)
+            # return leaf node with examples mode value
+            return DecisionTree(class_label = majority_value(binary_targets))
 
         else:
             # recursively create a subtree
