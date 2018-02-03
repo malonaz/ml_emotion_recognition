@@ -19,7 +19,9 @@ graphs:  $(GRAPHS_OBJECTS:.dot=.pdf)
 #### REPORT
 
 report:
+	mkdir -p report
 	make report/report.pdf
+	clear
 
 report/report.pdf: src/report.tex
 	pdflatex $<
