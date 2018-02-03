@@ -1,5 +1,6 @@
 from training import *
 from evaluation import *
+import numpy
 
 # the array is assumed to be either of proababilities of dependencies
 def append_array(filename, anArray):
@@ -39,10 +40,10 @@ def main():
     append_string(filename, "Loaded clean dataset")
     
     # 3. train 6 trees on the clean dataset
-    # trained_trees = train_trees(examples, labels)
+    trained_trees = train_trees(examples, labels)
 
     # 4. generate graphs in (Graphs folder) for each tree
-    # visualize_trees(trained_trees)
+    visualize_trees(trained_trees)
 
     # 5. perform cross_validation
     confusion_matrix, average_error_rate = cross_validation(examples, labels)
