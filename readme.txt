@@ -23,3 +23,9 @@ QUESTIONS:
  5) the average classification rate is simply 1 - the average error rate? or is it the average of each fold's classification rate?
  
 
+
+
+
+
+TODO:
+should i randomize if multiple attributes introduce minimal avg entropy
