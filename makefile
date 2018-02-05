@@ -8,6 +8,7 @@ GRAPHS_OBJECTS = graphs/emotion1.dot graphs/emotion2.dot graphs/emotion3.dot gra
 
 $(GRAPHS_OBJECTS):
 	mkdir -p graphs
+	mkdir -p output
 	python src/main.py
 
 $(GRAPHS_OBJECTS:.dot=.pdf): %.pdf : %.dot
