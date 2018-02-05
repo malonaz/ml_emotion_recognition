@@ -1,0 +1,56 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[margin=2cm]{geometry}
+%\usepackage{anysize}
+\usepackage[pdftex]{graphicx}
+\usepackage{url}
+\usepackage{fixltx2e}
+\usepackage{listings}
+\usepackage{textcomp}
+\usepackage{wrapfig}
+\usepackage{color}
+\usepackage{subfig}
+\usepackage{fancyhdr}
+\usepackage{newclude}
+\usepackage[nodayofweek]{datetime}
+\usepackage[small,compact]{titlesec}
+\usepackage[pdfborder=0]{hyperref}
+\longdate
+
+\setlength{\parskip}{11pt} 
+\setlength\parindent{0pt}
+
+\pagestyle{fancyplain}
+\fancyhf{}
+\lhead{\fancyplain{}{Machine Learning CBC}}
+\rhead{\fancyplain{}{\today}}
+\cfoot{\fancyplain{}{\thepage}}
+
+
+\title{395 Machine Learning\\\Large{--- Assignment 1 ---}}
+\author{Group 11\\Malon AZRIA, Alexandre CODACCIONI, Benjamin MAI, Laura HAGEGE.\\
+       \{ma12917, alex, ben, lmh1417.\}@doc.ic.ac.uk\\ \\
+       \small{CBC helper: Pingchaun MA}\\
+       \small{Course: CO395, Imperial College London}
+}
+
+
+\begin{document}
+\maketitle
+
+\section{Implementation}
+    \include*{implementation}
+
+\section{Classification ambiguity}
+    \include*{ambiguity}
+
+\section{Evaluation}
+    \include*{measure}
+
+\section{Pruning}
+    \include*{pruning}
+
+\newpage
+\section{Acquired decision trees}
+    \include*{decision_trees}
+
+\end{document}
