@@ -1,6 +1,6 @@
 from training import *
 from evaluation import *
-import numpy
+from numpy import savetxt, column_stack
 
 # the array is assumed to be either of proababilities of dependencies
 def append_array(filename, anArray):
@@ -72,6 +72,17 @@ def main():
     # 10. print average classification rate
     append_string(filename, "\naverage classification rate")
     append_string(filename, str(1 - average_error_rate))
+
+
+
+    #########################################################
+    # TEX FILES FORMAT
+    savetxt("output/confusion_matrix.txt", confusion_matrix, delimiter = " & ", fmt = "%i")
+    savetxt("output/recall_rates.txt", column_stack(recall_rates), delimiter = " & ", fmt = "%2.2f")
+    savetxt("output/precision_rates.txt", column_stack(precision_rates), delimiter = " & ", fmt = "%2.2f")
+    savetxt("output/f1_measures.txt", column_stack(f1_measures), delimiter = " & ", fmt = "%2.2f")
+    
+
     
 if __name__ == "__main__":
     main()
