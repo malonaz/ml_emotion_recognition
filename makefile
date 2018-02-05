@@ -11,10 +11,10 @@ $(GRAPHS_OBJECTS):
 	mkdir -p output
 	python src/main.py
 
-$(GRAPHS_OBJECTS:.dot=.png): %.png : %.dot
-	dot $< -Tpng -o $@
+$(GRAPHS_OBJECTS:.dot=.pdf): %.pdf : %.dot
+	dot $< -Tpdf -o $@
 
-graphs:  $(GRAPHS_OBJECTS:.dot=.png)
+graphs:  $(GRAPHS_OBJECTS:.dot=.pdf)
 
 
 ### PHONY
