@@ -17,18 +17,6 @@ $(GRAPHS_OBJECTS:.dot=.pdf): %.pdf : %.dot
 graphs:  $(GRAPHS_OBJECTS:.dot=.pdf)
 
 
-#### REPORT
-
-report:
-	mkdir -p report
-	make report/report.pdf
-	clear
-
-report/report.pdf: src/report.tex
-	pdflatex $<
-	mv report.pdf report/report.pdf
-	rm -rf report.*
-
 ### PHONY
 
 .PHONY: graphs test clean report
