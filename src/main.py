@@ -37,7 +37,7 @@ def main():
 
     # 2. get clean data set
     examples, labels = load_data(CLEAN_DATA_STUDENTS)
-    append_string(filename, "Loaded clean dataset")
+    append_string(filename, "\nLoaded clean dataset")
     
     # 3. train 6 trees on the clean dataset
     trained_trees = train_trees(examples, labels)
@@ -47,27 +47,31 @@ def main():
 
     # 5. perform cross_validation
     confusion_matrix, average_error_rate = cross_validation(examples, labels)
-    append_string(filename, "performed cross_validation")
+    append_string(filename, "\nperformed cross_validation")
 
     # 6. print confusion matrix
-    append_string(filename, "confusion matrix")
+    append_string(filename, "\nconfusion matrix")
     append_array(filename, confusion_matrix)
 
     # 7. get recall and precision rates
     recall_rates, precision_rates = get_recall_precision_rates(confusion_matrix)
 
     # 8. print recall rates
-    append_string(filename, "recall rates")
+    append_string(filename, "\nrecall rates")
     append_list(filename, recall_rates)
 
     # 9. print precision rates
-    append_string(filename, "precision rates")
+    append_string(filename, "\nprecision rates")
     append_list(filename, precision_rates)
 
+    # 10. print F_1 measures
+    append_string(filename, "\nf1 measures")
+    f1_measures = get_f_measures(recall_rates, precision_rates)
+    append_list(filename, f1_measures)
+    
     # 10. print average classification rate
-    append_string(filename, "average classification rate")
+    append_string(filename, "\naverage classification rate")
     append_string(filename, str(1 - average_error_rate))
-
     
 if __name__ == "__main__":
     main()
