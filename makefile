@@ -16,6 +16,9 @@ $(GRAPHS_OBJECTS:.dot=.pdf): %.pdf : %.dot
 
 graphs:  $(GRAPHS_OBJECTS:.dot=.pdf)
 
+### REPORT
+
+REPORT_OBJECTS = report/report.aux report/report.log report/report.out report/report.pdf
 
 ### PHONY
 
@@ -23,5 +26,5 @@ graphs:  $(GRAPHS_OBJECTS:.dot=.pdf)
 
 
 clean:
-	rm -rf src/*.pyc graphs/* output/*.txt 
+	rm -rf src/*.pyc graphs/* output/*.txt $(REPORT_OBJECTS)
 
