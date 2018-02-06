@@ -6,17 +6,16 @@ such as \emph{cleandata\_student.mat} into two matrices to separate the examples
 such that a '1' indicates a positive label and a '0' indicates a negative label.
 
 2) Training module \\
-There are a couple of things we feel is important in our implementation.
-To begin, in order to find the best attribute in each node, we do not maximize the information gain
-but rather, we minimize the information remainder (i.e. the average entropy of the two children nodes
-that would be created if splitting on a particular attribute). This method yields the same results yet
-improves the algorithm's complexity, as we are not repetitively recomputing the initial entropy of the node.
-Secondly, we noticed that as we go deeper down the tree, multiple attributes are candidates to be the best attribute
-at this node, because intuitively, they offer the same information gain. We were faced with a dilemma. Should we simply
-take the first one of those candidate attributes? We decided to randomize a selection from the candidates.
+Let us start by discussing our \emph{find\_best\_attribute} implementation. \\
+First, when seeking the best attribute to split the current node's examples on, we do not maximize the information gain.
+Instead, we minimize the information remainder (i.e. the average entropy of the two children nodes
+that would be created if splitting on a particular attribute).
+This method yields the same results yet
+improves the algorithm's complexity, as we are not repetitively recomputing the initial entropy of the node.\\
+Second, we noticed that deeper down the tree, multiple attributes may be candidates to be the best attribute on a certain node,
+because they offer the same information gain. We were faced with a dilemma: Should we simply
+take the first one of those candidate attributes? We decided to randomize a selection from the candidates.\\\\
 
-
-In order to build the decision tree, we use an algorithm that, if all the binary-target values are differents, split the binary target set in two subset, according the best attribute selected. Thus, we use the information gain to determine the best attribute. This calculation is based on the entropy but, as the Entropy in constant for a given set we decided to minimize the reminder of each attribute in order to do the best choice. For a given attribute, we can distinguish positives and negatives example according to the value (respectively 1 and 0) of the attribute position in the example. Then the binary target classify these positives and negatives examples into success(p) and fail(n). Once the attribute is decided, we emove it from the list of attribute passed in our decision tree function.
 
 2) cross validation perform
 3) how you compute average results
