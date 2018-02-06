@@ -108,18 +108,18 @@ def decision_tree_learning(examples, attributes, binary_targets):
         return DecisionTree(class_label = majority_value(binary_targets))
 
     # get the best attribute and the remaining attributes
-    best_attribute_index = choose_best_decision_attribute(examples, attributes, binary_targets)
-    remaining_attributes = [attribute for attribute in attributes if attribute != best_attribute_index]
+    best_attribute = choose_best_decision_attribute(examples, attributes, binary_targets)
+    remaining_attributes = [attribute for attribute in attributes if attribute != best_attribute]
 
     # new decision tree with root as best_attribute
-    tree = DecisionTree(test = best_attribute_index)
+    tree = DecisionTree(test = best_attribute)
     
     # add branch for each value of the best attribute. Here it can only take on two values
     for value in range(ATTRIBUTE_NUM_VALUES):
         
         # get the examples and binary targets that match this value of the best attribute
-        examples_i = [examples[i] for i in range(example_count) if examples[i][best_attribute_index] == value]
-        binary_targets_i = [binary_targets[i] for i in range(example_count) if examples[i][best_attribute_index] == value]
+        examples_i = [examples[i] for i in range(example_count) if examples[i][best_attribute] == value]
+        binary_targets_i = [binary_targets[i] for i in range(example_count) if examples[i][best_attribute] == value]
 
         if (len(examples_i) == 0):
             # return leaf node with examples mode value
