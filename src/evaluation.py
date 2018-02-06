@@ -29,7 +29,7 @@ def train_trees(examples, labels):
 
     return trained_trees
 
-def visualize_trees(trees):
+def visualize_trees(trees, folder):
     """ generates graphs for each trained tree (one for each emotion) in the graphs folder."""
 
     for i in range(len(trees)):
@@ -38,7 +38,7 @@ def visualize_trees(trees):
         emotion = i + 1
 
         # compute filename
-        filename = "graphs/emotion" + str(emotion) + ".dot"
+        filename = "graphs/" + folder + "/emotion" + str(emotion) + ".dot"
 
         # generate graph
         trees[i].generate_graph(filename)

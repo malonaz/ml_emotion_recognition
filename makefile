@@ -3,12 +3,17 @@
 #### FOR GRAPHS 
 
 GRAPHS_DIR = graphs/
-GRAPHS_OBJECTS = graphs/emotion1.dot graphs/emotion2.dot graphs/emotion3.dot graphs/emotion4.dot graphs/emotion5.dot graphs/emotion6.dot
+GRAPHS_OBJECTS = graphs/clean_dataset/emotion1.dot graphs/clean_data/setemotion2.dot graphs/clean_dataset/emotion3.dot \
+		 graphs/clean_dataset/emotion4.dot graphs/clean_dataset/emotion5.dot graphs/clean_dataset/emotion6.dot \
+		 graphs/noisy_dataset/emotion1.dot graphs/noisy_dataset/emotion2.dot graphs/noisy_dataset/emotion3.dot \
+		 graphs/noisy_dataset/emotion4.dot graphs/noisy_dataset/emotion5.dot graphs/noisy_dataset/emotion6.dot
 
 
 $(GRAPHS_OBJECTS):
-	mkdir -p graphs
-	mkdir -p output
+	mkdir -p graphs/clean_dataset
+	mkdir -p graphs/noisy_dataset
+	mkdir -p output/clean_dataset
+	mkdir -p output/noisy_dataset
 	python src/main.py
 
 $(GRAPHS_OBJECTS:.dot=.pdf): %.pdf : %.dot
@@ -26,5 +31,5 @@ REPORT_OBJECTS = report/report.aux report/report.log report/report.out report/re
 
 
 clean:
-	rm -rf src/*.pyc graphs/* output/*.txt $(REPORT_OBJECTS)
+	rm -rf src/*.pyc graphs/* output/* $(REPORT_OBJECTS)
 

@@ -25,25 +25,26 @@ def append_string(filename, aString):
     f.close()
 
     
-def main():
-    # we will write results to this file
-    filename = "output/results.txt"
+def main(dataset, folder):
+    
+    # compute filename using the folder path
+    filename = "output/" + folder + "/results.txt"
 
-    # erase file
+    # erase file if it already exists
     open(filename, 'w').close()
 
     # 1. write title of file 
     append_string(filename, "Results for Machine Learning Coursework by Malon AZRIA, Alexandre CODACCIONI, Benjamin MAI & Laura HAGEGE")
 
-    # 2. get clean data set
-    examples, labels = load_data(CLEAN_DATA_STUDENTS)
-    append_string(filename, "\nLoaded clean dataset")
+    # 2. get dataset
+    examples, labels = load_data(dataset)
+    append_string(filename, "\nLoaded dataset")
     
-    # 3. train 6 trees on the clean dataset
+    # 3. train 6 trees on the dataset
     trained_trees = train_trees(examples, labels)
 
-    # 4. generate graphs in (Graphs folder) for each tree
-    visualize_trees(trained_trees)
+    # 4. generate graphs in (graphs folder) for each tree
+    visualize_trees(trained_trees, folder)
 
     # 5. perform cross_validation
     confusion_matrix, average_error_rate = cross_validation(examples, labels)
@@ -77,15 +78,20 @@ def main():
 
     #########################################################
     # TEX FILES FORMAT
-    savetxt("output/confusion_matrix.txt", confusion_matrix, delimiter = " & ", fmt = "%i")
-    savetxt("output/recall_rates.txt", column_stack(recall_rates), delimiter = " & ", fmt = "%2.2f")
-    savetxt("output/precision_rates.txt", column_stack(precision_rates), delimiter = " & ", fmt = "%2.2f")
-    savetxt("output/f1_measures.txt", column_stack(f1_measures), delimiter = " & ", fmt = "%2.2f")
+    savetxt("output/" + folder + "/confusion_matrix.txt", confusion_matrix, delimiter = " & ", fmt = "%i")
+    savetxt("output/" + folder + "/recall_rates.txt", column_stack(recall_rates), delimiter = " & ", fmt = "%2.2f")
+    savetxt("output/" + folder + "/precision_rates.txt", column_stack(precision_rates), delimiter = " & ", fmt = "%2.2f")
+    savetxt("output/" + folder + "/f1_measures.txt", column_stack(f1_measures), delimiter = " & ", fmt = "%2.2f")
     
 
     
 if __name__ == "__main__":
-    main()
+
+    # call with clean data set
+    main(CLEAN_DATA_STUDENTS, "clean_dataset")
+
+    # call with clean data set
+    main(NOISY_DATA_STUDENTS, "noisy_dataset")
 
 
     
