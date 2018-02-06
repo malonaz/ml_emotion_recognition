@@ -1,4 +1,8 @@
 1) best attribute selection
+
+
+In order to build the decision tree, we use an algorithm that, if all the binary-target values are differents, split the binary target set in two subset, according the best attribute selected. Thus, we use the information gain to determine the best attribute. This calculation is based on the entropy but, as the Entropy in constant for a given set we decided to minimize the reminder of each attribute in order to do the best choice. For a given attribute, we can distinguish positives and negatives example according to the value (respectively 1 and 0) of the attribute position in the example. Then the binary target classify these positives and negatives examples into success(p) and fail(n). Once the attribute is decided, we emove it from the list of attribute passed in our decision tree function.
+
 2) cross validation perform
 3) how you compute average results
 4) how to test python code
