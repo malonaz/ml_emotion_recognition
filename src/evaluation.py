@@ -37,16 +37,6 @@ def get_k_folds(examples, labels, k = 10):
         k_folds.append([fold_examples, fold_labels])
         
     return k_folds
-            
-
-def test_performance(tree, emotion, test_data, binary_targets):
-    """ returns the error rate of the tree classifier on the test data."""
-
-    # for each data point, check if the tree's evaluation matches its binary_target
-    results = [tree.evaluate(test_data[i]) == binary_targets[i] for i in range(len(test_data))]
-
-    # return the ratio of matches to data points
-    return float(sum(results))/len(results)
 
 
 def classify_example(trees, example):
@@ -115,7 +105,7 @@ def cross_validation(examples, labels, k = 10):
     k_folds = get_k_folds(examples, labels, k)
 
     # used to store the average error rate
-    average_error_rate = 0
+    average_error_rate = 0.0
 
     # used to store total predictions and total test labels
     total_predictions = []
