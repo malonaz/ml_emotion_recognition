@@ -3,7 +3,7 @@
 #### FOR GRAPHS 
 
 GRAPHS_DIR = graphs/
-GRAPHS_OBJECTS = graphs/clean_dataset/emotion1.dot graphs/clean_data/setemotion2.dot graphs/clean_dataset/emotion3.dot \
+GRAPHS_OBJECTS = graphs/clean_dataset/emotion1.dot graphs/clean_dataset/emotion2.dot graphs/clean_dataset/emotion3.dot \
 		 graphs/clean_dataset/emotion4.dot graphs/clean_dataset/emotion5.dot graphs/clean_dataset/emotion6.dot \
 		 graphs/noisy_dataset/emotion1.dot graphs/noisy_dataset/emotion2.dot graphs/noisy_dataset/emotion3.dot \
 		 graphs/noisy_dataset/emotion4.dot graphs/noisy_dataset/emotion5.dot graphs/noisy_dataset/emotion6.dot

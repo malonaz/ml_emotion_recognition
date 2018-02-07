@@ -100,12 +100,12 @@ def decision_tree_learning(examples, attributes, binary_targets):
     # check if examples are already classified
     if (pos_count == 0 or pos_count == example_count):
         # all 1s or 0s. so return leaf node with this value
-        return DecisionTree(class_label = binary_targets[0])
+        return LeafNode(binary_targets[0])
 
     # check if attribute is empty
     if (attribute_count == 0):
         # return a leaf node with mode of binary targets
-        return DecisionTree(class_label = majority_value(binary_targets))
+        return LeafNode(majority_value(binary_targets))
 
     # get the best attribute and the remaining attributes
     best_attribute = choose_best_decision_attribute(examples, attributes, binary_targets)
@@ -123,7 +123,7 @@ def decision_tree_learning(examples, attributes, binary_targets):
 
         if (len(examples_i) == 0):
             # return leaf node with examples mode value
-            return DecisionTree(class_label = majority_value(binary_targets))
+            return LeafNode(majority_value(binary_targets))
 
         else:
             # recursively create a subtree

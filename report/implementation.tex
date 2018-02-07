@@ -1,24 +1,37 @@
 
-1) Data loader module\\
-\emph{load\_data} extracts the data from one of the two datasets
-such as \emph{cleandata\_student.mat} into two matrices to separate the examples and labels. \\
-\emph{get\_binary\_targets} maps a matrix of labels to a binary target for a given label
-such that a '1' indicates a positive label and a '0' indicates a negative label.
+Part 1) Loading the data\\
+We have created a data loader module which serves two purposes.
+First, its \emph{load\_data} function extracts the data from one of the two datasets
+and returns two matrices containing the examples and labels. \\
+Second, its \emph{get\_binary\_targets} function maps a matrix of labels to a binary target for a chosen emotion,
+such that a '1' indicates that a label represents this emotion and a '0' indicates otherwise.
 
 2) Training module \\
-There are a couple of things we feel is important in our implementation.
-To begin, in order to find the best attribute in each node, we do not maximize the information gain
-but rather, we minimize the information remainder (i.e. the average entropy of the two children nodes
-that would be created if splitting on a particular attribute). This method yields the same results yet
-improves the algorithm's complexity, as we are not repetitively recomputing the initial entropy of the node.
-Secondly, we noticed that as we go deeper down the tree, multiple attributes are candidates to be the best attribute
-at this node, because intuitively, they offer the same information gain. We were faced with a dilemma. Should we simply
+Let us start now turn to our \emph{choose\_best\_decision\_attribute} implementation. \\
+First, when seeking the best attribute to split the current node's examples on, we do not maximize the information gain.
+Instead, we minimize the information remainder (i.e. the average entropy of the two children nodes
+that would be created if splitting on a particular attribute).
+This method yields the same results yet
+improves the algorithm's complexity, as we are not repetitively recomputing the initial entropy of the node.\\
+Second, we noticed that deeper down the tree, multiple attributes may be candidates to be the best attribute on a certain node,
+because they offer the same information gain. We were faced with a dilemma: Should we simply
 take the first one of those candidate attributes? We decided to randomize a selection from the candidates.
 
+Next, let us take a closer look at the implementation \emph{find\_majority\_value}.\\
+What value should it return when the given binary targets contains an equal number of
+'1's and '0's? We decided to randomize the selection.
 
-In order to build the decision tree, we use an algorithm that, if all the binary-target values are differents, split the binary target set in two subset, according the best attribute selected. Thus, we use the information gain to determine the best attribute. This calculation is based on the entropy but, as the Entropy in constant for a given set we decided to minimize the reminder of each attribute in order to do the best choice. For a given attribute, we can distinguish positives and negatives example according to the value (respectively 1 and 0) of the attribute position in the example. Then the binary target classify these positives and negatives examples into success(p) and fail(n). Once the attribute is decided, we emove it from the list of attribute passed in our decision tree function.
+Now, let us discuss how we performed cross-validation\\
+Here is the general process we follow:
+split the data randomly into 10 folds.
+
+
+
 
 2) cross validation perform
+
+
+
 3) how you compute average results
 4) how to test python code
 
