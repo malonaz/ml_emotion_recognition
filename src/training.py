@@ -112,7 +112,7 @@ def decision_tree_learning(examples, attributes, binary_targets):
     remaining_attributes = [attribute for attribute in attributes if attribute != best_attribute]
 
     # new decision tree with root as best_attribute
-    tree = DecisionTree(test = best_attribute)
+    tree = DecisionTree(attribute_to_test = best_attribute)
     
     # add branch for each value of the best attribute. Here it can only take on two values
     for value in range(ATTRIBUTE_NUM_VALUES):

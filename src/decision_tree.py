@@ -2,7 +2,7 @@
 class DecisionTree(object):
     """ Represents a decision tree.         
         @members:
-           test: the attribute the node is testing. None if node is a leaf node
+           attribute_to_test: the attribute the node is testing. None if node is a leaf node
            kids: node array which contains the subtrees that initiate from this node.
                  empty for leaf nodes
            class_label: Label for the leaf node only, None otherwise. has value 0 or 1
@@ -13,10 +13,10 @@ class DecisionTree(object):
     # static member to keep count of number of nodes
     node_count = 0
     
-    def __init__(self, test = None):
+    def __init__(self, attribute_to_test = None):
         """ initializes the decision tree """
         
-        self.test = test
+        self.attribute_to_test = attribute_to_test
         self.kids = []
 
         # set id, then increment the static node_count
@@ -33,7 +33,7 @@ class DecisionTree(object):
         """ Returns the classification of the given example using this tree."""
 
         # apply this node's test on the example
-        result = example[self.test]
+        result = example[self.attribute_to_test]
 
         # recursively go down the appropriate branch of this tree
         return self.kids[result].evaluate(example)
@@ -42,7 +42,7 @@ class DecisionTree(object):
     def __str__(self):
         """ overrides the str operator for a decision tree."""
 
-        return "\"AU" + str(self.test + 1) + "\""             
+        return "\"AU" + str(self.attribute_to_test + 1) + "\""             
 
     
     def get_id(self):
