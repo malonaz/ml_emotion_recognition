@@ -1,5 +1,4 @@
-
-We have divided the program into four modules. Let us walk through each module's functionality & purpose.\\
+We have divided the program into four modules. Let us walk through each module's functionality \& purpose.
 
 Module 1: Loading the Data \\
 This module serves two purposes.\\
@@ -9,41 +8,35 @@ Second, its \emph{get\_binary\_targets} function maps a matrix of labels to a bi
 such that a '1' indicates that a label represents this emotion and a '0' indicates otherwise.
 
 Module 2: Decision Tree Structure \\
-We feel it is important to discuss our implementation of the decision tree structure,
-because many extra functionalities are coded into it. The decision tree is made up of two types of objects.\\
-First, the DecisionTree object with members:\\
-attribute\_to\_test represents the attribute this node tests. Kids contains the two children nodes, one for
-examples that have a '0' for this node's test and one for examples that have a '1'. Lastly, it has an id member used for graph
-generation purposes. DecisionTree has an evaluate method which given an example, tests its attribute and recurses into
-the appropriate kid's evaluate method. \\
-Second, the LeafNode object which is a subclass of DecisionTree and thus inherits all its field, in addition to a new
-member representing the class label of this leaf node, a '0' or a '1' representing the decision of the tree.
-It overrides the evaluate method of the Decision tree as there is no recursion at a leaf node, it simply returns its class label.
+This module contains the structure of a decision tree, which is made up of two types of objects. \\
+The \emph{Node} class represents an internal (non-leaf) node in the decision tree and is completely characterized by the attribute
+this node is testing as well as a kids array containing any children of this node. In this coursework, there are two children
+in an internal node, one for examples that test negative for this node's attribute and one for examples that test positive.
+In addition, the node has an id member used for graph generation purposes.
+A Node has an evaluate method which, given an example, tests its attribute and recurses into the appropriate kid's evaluate method. \\
+The \emph{LeafNode} class represents a leaf node in the decision tree and is a subclass of the \emph{Node} class.
+Thus, it inherits all its field, in addition to a new member representing the class label of this leaf node,
+a '0' or a '1' representing the decision of the tree.
+Lastly, it overrides the evaluate method of the Decision tree as there is no recursion at a leaf node, it simply returns its class label.\\
 
 
-
-
-Part 3: Training Decision Trees
-Let us start now turn to our \emph{choose\_best\_decision\_attribute} implementation. \\
+Module 3: Training Decision Trees \\
+Let us begin this module's discussion with the implementation of \emph{choose\_best\_decision\_attribute}. \\
 First, when seeking the best attribute to split the current node's examples on, we do not maximize the information gain.
 Instead, we minimize the information remainder (i.e. the average entropy of the two children nodes
 that would be created if splitting on a particular attribute).
-This method yields the same results yet
-improves the algorithm's complexity, as we are not repetitively recomputing the initial entropy of the node.\\
-Second, we noticed that deeper down the tree, multiple attributes may be candidates to be the best attribute on a certain node,
+This method yields the same results yet improves the algorithm's complexity,
+as we are not repetitively recomputing the initial entropy of the node.
+Second, we noticed that deeper down a tree, multiple attributes may be candidates to be the best attribute on a certain node,
 because they offer the same information gain. We were faced with a dilemma: Should we simply
-take the first one of those candidate attributes? We decided to randomize a selection from the candidates.
-
+take the first one of those candidate attributes? We decided to randomize a selection from the candidates.\\
 Next, let us take a closer look at the implementation \emph{find\_majority\_value}.\\
 What value should it return when the given binary targets contains an equal number of
 '1's and '0's? We decided to randomize the selection.
 
-Now, let us discuss how we performed cross-validation\\
-Here is the general process we follow:
-split the data randomly into 10 folds.
 
-
-
+Module 4: Evaluation \\
+In this module, we 
 
 2) cross validation perform
 
