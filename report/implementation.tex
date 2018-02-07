@@ -48,6 +48,6 @@ We choose not to include the extra 4 in any of the folds in order to keep the fo
 \emph{test\_trees()} takes trained trees and a list of examples to return a vector label predictions.\\
 \emph{get\_error\_rate()} returns the error rates of predictions versus their true values, as dictated by the specs.\\
 Finally, let's talk about the \emph{cross\_validation()} implementation which begins by getting the k folds (here k = 10).
-For each fold, we train six trees on the rest of the folds. Next, we compute the vector of predictions on the current fold's data,
-and calculate its error rate. At the end of each fold, the fold's predictions and label vectors are concatenated to total prediction and
-total labels vectors respectively, which is used to generate the confusion matrix.
+For each fold, we train six trees on the rest of the folds. Next, we compute the vector of predictions on the current fold's data.
+At the end of each fold, the fold's predictions and label vectors are concatenated to total prediction and
+total labels vectors respectively, which are used to generate the confusion matrix and the average error rate.
