@@ -32,16 +32,25 @@ because they offer the same information gain. We were faced with a dilemma: Shou
 take the first one of those candidate attributes? We decided to randomize a selection from the candidates.\\
 Next, let us take a closer look at the implementation \emph{find\_majority\_value}.\\
 What value should it return when the given binary targets contains an equal number of
-'1's and '0's? We decided to randomize the selection.
-
+'1's and '0's? We decided to randomize the selection.\\
+We have created a \emph{train\_trees} function that abstracts aways the lower-level workings of the training
+of trees. This function takes two matrices, examples and labels respectively,
+and returns six trained trees, one for each emotion.
+Lastly, we have a function \emph{vizualize\_trees} that takes a list of trees and generates a graph dot file
+for each tree.
 
 Module 4: Evaluation \\
-In this module, we 
+The \emph{get\_k\_folds} function splits the given data into k folds and returns the k folds in a list.
+The function generates a random a random integer from the range of indices
+of the remaining examples, pops it into the current fold, until the current fold reaches the fold size implied
+by the k way splitting of the examples. Here we have 1004 examples and as such, create 10 folds of 100 examples.
+We choose not to include the extra 4 in any of the folds in order to keep the folds equal in magnitude.\\
+\emph{test\_trees} takes trained trees and a list of examples to retunr a vector label predictions.\\
+\emph{get\_error\_rate} returns the error rates of predictions versus their true values, as dictated by the specs.
 
-2) cross validation perform
+
 
 
 
 3) how you compute average results
 4) how to test python code
-
