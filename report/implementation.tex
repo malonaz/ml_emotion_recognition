@@ -1,12 +1,27 @@
 
-Part 1) Loading the data\\
+Part 1: Loading the Data\\
 We have created a data loader module which serves two purposes.
 First, its \emph{load\_data} function extracts the data from one of the two datasets
 and returns two matrices containing the examples and labels. \\
 Second, its \emph{get\_binary\_targets} function maps a matrix of labels to a binary target for a chosen emotion,
 such that a '1' indicates that a label represents this emotion and a '0' indicates otherwise.
 
-2) Training module \\
+Part 2: Decision Tree Structure \\
+We feel it is important to discuss our implementation of the decision tree structure,
+because many extra functionalities are coded into it. The decision tree is made up of two types of objects.\\
+First, the DecisionTree object with members:\\
+attribute\_to\_test represents the attribute this node tests. Kids contains the two children nodes, one for
+examples that have a '0' for this node's test and one for examples that have a '1'. Lastly, it has an id member used for graph
+generation purposes. DecisionTree has an evaluate method which given an example, tests its attribute and recurses into
+the appropriate kid's evaluate method. \\
+Second, the LeafNode object which is a subclass of DecisionTree and thus inherits all its field, in addition to a new
+member representing the class label of this leaf node, a '0' or a '1' representing the decision of the tree.
+It overrides the evaluate method of the Decision tree as there is no recursion at a leaf node, it simply returns its class label.
+
+
+
+
+Part 3: Training Decision Trees
 Let us start now turn to our \emph{choose\_best\_decision\_attribute} implementation. \\
 First, when seeking the best attribute to split the current node's examples on, we do not maximize the information gain.
 Instead, we minimize the information remainder (i.e. the average entropy of the two children nodes
