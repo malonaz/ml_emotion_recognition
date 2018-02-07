@@ -1,17 +1,13 @@
-To perform this evaluation, a 10-fold cross-validation is performed in order to assess the decision tree’s accuracy.
-Using the cross-validation an average error of the ten estimates is 10\% was discovered.
+In this section, we will attempt to evaluate our decision tree model. We begin by using a 10-fold cross-validation
+in order to assess the precision and accuracy of our model. 
 
-Having the 10-fold cross validation calculated on the training set, the classified results
-are used to generate a confusion matrix.
-To be more specific, the 10 predicted subsets are concatenated
-and passed along with the actual target labels into a function responsible for the calculation of the confusion matrix.
-
-From those matrix, it can be observed that the correct classifications for each class are on the matrix’s diagonal.
-We can also state that, for the two sets of data, some similar emotion are confused.
+Let's take a closer look at the average confusion matrices of the clean dataset. The relatively high numbers on the diagonal indicate that
+each emotion's decision tree correctly identifies an example more often than not. Such observations are more easily infered from metrics such as the precision or recall rate. The interest in the confusion matrix lies in examining where the misclassified examples end or to be more specific, which emotion misappropriates it. 
 
 \include*{confusion_matrix_clean}
 
-For example, for those clean data, Sadness could be confused with Digust or Anger, which is logical when we can assume that sadness is a mix between those two emotions. 
+
+Here for those clean data, Sadness could be confused with Digust or Anger, which is logical when we can assume that sadness is a mix between those two emotions. 
 Those confusions could happen in real faces recognitions for humans.
 On the other hand Happiness seems to be the well recognised emotion, but we will
 analyse Average Recall and Precision Rates for clean dataset for more details. 
