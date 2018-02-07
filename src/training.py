@@ -131,3 +131,42 @@ def decision_tree_learning(examples, attributes, binary_targets):
             tree.add_kid(subtree)
 
     return tree    
+
+
+def train_trees(examples, labels):
+    """ uses the given dataset to train 6 trees, one for each emotion and  
+        Returns a list of these six trees."""
+
+    # used to store the trained trees
+    trained_trees = []
+    
+
+    for i in range(NUM_CLASSES):
+
+        # get emotion number. [1,2,3,4,5,6]
+        emotion = i + 1
+        
+        # generate binary targets for current emotion
+        binary_targets = get_binary_targets(labels, emotion)
+
+        # train tree
+        trained_tree = decision_tree_learning(examples, range(NUM_ATTRIBUTES), binary_targets)
+
+        # add it to trained trees
+        trained_trees.append(trained_tree)
+
+    return trained_trees
+
+def visualize_trees(trees, folder):
+    """ generates graphs for each trained tree (one for each emotion) in the graphs folder."""
+
+    for i in range(len(trees)):
+
+        # get emotion number [1, 2, 3, 4, 5, 6]
+        emotion = i + 1
+
+        # compute filename
+        filename = "graphs/" + folder + "/emotion" + str(emotion) + ".dot"
+
+        # generate graph
+        trees[i].generate_graph(filename)
