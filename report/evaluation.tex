@@ -25,6 +25,10 @@ Those formulas use information from the confusion matrix to calculate those two 
 For the clean data set, it's clear that the well recognised emitions are happiness and surpise, with higher rates of F1 measure. 
 We can also conclude sadness is less recogniseable than other emotions.
 
+
+average classification rate
+71.6\%
+ 
 \include*{confusion_matrix_noisy}
 
 The main difference for the noisy data is that the diagonal of the matrix show less matches than the clean data set, but stay the main recognition for the emotions.
@@ -34,6 +38,14 @@ We can still observe some confusions between labels, especialluy between disgust
 \include*{recall_and_precision_rates_noisy}
 
 The noisy data set confirm the results made on clean data set, and clearly show an higher recognition for happiness and suprised. However, even if sadness still shows a low F1 measure, anger have a lower measure than all the others. This can be explained by the fact that anger and sadness can be confused in the real world, which is closer to noisy data. 
+
+
+average classification rate
+60.6\%
+
+
+Finally the classification rate show that with clean data we can classify more emotions than with noisy data, which could seam logical. 
+We can also state the tree are well trained beacuse we have more than 60\% for each data set wich are good rates. 
 
 
 
