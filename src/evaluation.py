@@ -105,7 +105,7 @@ def cross_validation(examples, labels, k = 10):
     k_folds = get_k_folds(examples, labels, k)
 
     # used to store the average error rate
-    average_error_rate = 0
+    average_error_rate = 0.0
 
     # used to store total predictions and total test labels
     total_predictions = []
