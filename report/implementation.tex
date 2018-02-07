@@ -1,12 +1,14 @@
 
-Part 1: Loading the Data\\
-We have created a data loader module which serves two purposes.
+We have divided the program into four modules. Let us walk through each module's functionality & purpose.\\
+
+Module 1: Loading the Data \\
+This module serves two purposes.\\
 First, its \emph{load\_data} function extracts the data from one of the two datasets
 and returns two matrices containing the examples and labels. \\
 Second, its \emph{get\_binary\_targets} function maps a matrix of labels to a binary target for a chosen emotion,
 such that a '1' indicates that a label represents this emotion and a '0' indicates otherwise.
 
-Part 2: Decision Tree Structure \\
+Module 2: Decision Tree Structure \\
 We feel it is important to discuss our implementation of the decision tree structure,
 because many extra functionalities are coded into it. The decision tree is made up of two types of objects.\\
 First, the DecisionTree object with members:\\
