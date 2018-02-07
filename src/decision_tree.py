@@ -87,7 +87,6 @@ class DecisionTree(object):
             edges_info += self.get_id() + " -> " + self.kids[i].get_id() + "[label=" + str(i) + "]\n"
             
             # make recursive call to get info about this kid's edge unless its a node
-#            if (isinstance(self.kids[i], DecisionTree)):
             edges_info += self.kids[i].get_edges()
 
         return edges_info
@@ -103,10 +102,11 @@ class LeafNode(DecisionTree):
 
     def __init__(self, class_label):
         """ initializes the leaf node """
-        
+
+        # set member
         self.class_label = class_label
 
-        # call to super constructor
+        # call to super constructor 
         super(LeafNode, self).__init__()
     
         
