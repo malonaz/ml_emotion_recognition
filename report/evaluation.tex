@@ -1,17 +1,23 @@
 In this section, we will attempt to evaluate our decision tree model. We begin by using a 10-fold cross-validation
 in order to assess the precision and accuracy of our model. 
 
-Let's take a closer look at the average confusion matrices of the clean dataset. The relatively high numbers on the diagonal indicate that
-each emotion's decision tree correctly identifies an example more often than not. Such observations are more easily infered from metrics such as the precision or recall rate. The interest in the confusion matrix lies in examining where the misclassified examples end or to be more specific, which emotion misappropriates it. 
+To begin, let's take a closer look at the average confusion matrices of the datasets.
+The relatively high numbers on the diagonal indicate that each emotion's decision tree correctly
+identifies an example more often than not. Such observations are more easily infered from metrics such as the precision or recall rate.
+The interest in the confusion matrix lies in examining where the misclassified examples end or to be more specific,
+which emotion misappropriates it. 
 
 \include*{confusion_matrix_clean}
 
-
-Here for those clean data, Sadness could be confused with Digust or Anger, which is logical when we can assume that sadness is a mix between those two emotions. 
-Those confusions could happen in real faces recognitions for humans.
-On the other hand Happiness seems to be the well recognised emotion, but we will
-analyse Average Recall and Precision Rates for clean dataset for more details. 
-
+The above confusion matrix reveals interesting aspects of the clean dataset.
+The Anger decision trees classifies over 10\% of Sadness examples incorrectly as examples of Anger, but only 0.1\% of Surprise examples.
+Similarly, the Sadness decision tree misappropriates 10\% of Disgust examples.
+Such patterns emerge upon closer examination of such metrics: Fear is often confused with Surprise, but Happiness is rarely confused with Fear.
+Intuitively, since we are looking at a clean dataset,
+the reason behind these misclassifications may take root in the muscle activations being similar for some emotions, such as Sadness and Disgust.
+This could be improved on by including  more than 45 facial muscles.
+Another reason for these confusions could arise from the data being collected from mixed emotions, perhaps because facial display
+of emotion is inherently subjective subjective in nature.
 
 \include*{recall_and_precision_rates_clean}
 
