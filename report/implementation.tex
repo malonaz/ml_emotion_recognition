@@ -2,9 +2,9 @@ We have divided the program into four modules. Let us walk through each module's
 
 Module 1: Loading the Data \\
 This module serves two purposes.\\
-First, its \emph{load\_data} function extracts the data from one of the two datasets
+First, its \emph{load\_data()} function extracts the data from one of the two datasets
 and returns two matrices containing the examples and labels. \\
-Second, its \emph{get\_binary\_targets} function maps a matrix of labels to a binary target for a chosen emotion,
+Second, its \emph{get\_binary\_targets()} function maps a matrix of labels to a binary target for a chosen emotion,
 such that a '1' indicates that a label represents this emotion and a '0' indicates otherwise.
 
 Module 2: Decision Tree Structure \\
@@ -21,7 +21,7 @@ Lastly, it overrides the evaluate method of the Decision tree as there is no rec
 
 
 Module 3: Training Decision Trees \\
-Let us begin this module's discussion with the implementation of \emph{choose\_best\_decision\_attribute}. \\
+Let us begin this module's discussion with the implementation of \emph{choose\_best\_decision\_attribute()}. \\
 First, when seeking the best attribute to split the current node's examples on, we do not maximize the information gain.
 Instead, we minimize the information remainder (i.e. the average entropy of the two children nodes
 that would be created if splitting on a particular attribute).
@@ -30,27 +30,24 @@ as we are not repetitively recomputing the initial entropy of the node.
 Second, we noticed that deeper down a tree, multiple attributes may be candidates to be the best attribute on a certain node,
 because they offer the same information gain. We were faced with a dilemma: Should we simply
 take the first one of those candidate attributes? We decided to randomize a selection from the candidates.\\
-Next, let us take a closer look at the implementation \emph{find\_majority\_value}.\\
+Next, let us take a closer look at the implementation \emph{find\_majority\_value()}.\\
 What value should it return when the given binary targets contains an equal number of
-'1's and '0's? We decided to randomize the selection.\\
-We have created a \emph{train\_trees} function that abstracts aways the lower-level workings of the training
+'0's and '1's? We decided to randomize the selection.\\
+We have created a \emph{train\_trees()} function that abstracts aways the lower-level workings of the training
 of trees. This function takes two matrices, examples and labels respectively,
 and returns six trained trees, one for each emotion.
-Lastly, we have a function \emph{vizualize\_trees} that takes a list of trees and generates a graph dot file
+Lastly, we have a function \emph{vizualize\_trees()} that takes a list of trees and generates a graph dot file
 for each tree.
 
 Module 4: Evaluation \\
-The \emph{get\_k\_folds} function splits the given data into k folds and returns the k folds in a list.
+The \emph{get\_k\_folds()} function splits the given data into k folds and returns the k folds in a list.
 The function generates a random a random integer from the range of indices
 of the remaining examples, pops it into the current fold, until the current fold reaches the fold size implied
 by the k way splitting of the examples. Here we have 1004 examples and as such, create 10 folds of 100 examples.
 We choose not to include the extra 4 in any of the folds in order to keep the folds equal in magnitude.\\
-\emph{test\_trees} takes trained trees and a list of examples to retunr a vector label predictions.\\
-\emph{get\_error\_rate} returns the error rates of predictions versus their true values, as dictated by the specs.
-
-
-
-
-
-3) how you compute average results
-4) how to test python code
+\emph{test\_trees()} takes trained trees and a list of examples to return a vector label predictions.\\
+\emph{get\_error\_rate()} returns the error rates of predictions versus their true values, as dictated by the specs.\\
+Finally, let's talk about the \emph{cross\_validation()} implementation which begins by getting the k folds (here k = 10).
+For each fold, we train six trees on the rest of the folds. Next, we compute the vector of predictions on the current fold's data,
+and calculate its error rate. At the end of each fold, the fold's predictions and label vectors are concatenated to total prediction and
+total labels vectors respectively, which is used to generate the confusion matrix.
