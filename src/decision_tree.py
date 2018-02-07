@@ -1,5 +1,5 @@
 
-class DecisionTree:
+class DecisionTree(object):
     """ Represents a decision tree.         
         @members:
            test: the attribute the node is testing. None if node is a leaf node
@@ -13,12 +13,11 @@ class DecisionTree:
     # static member to keep count of number of nodes
     node_count = 0
     
-    def __init__(self, test = None, class_label = None):
+    def __init__(self, test = None):
         """ initializes the decision tree """
         
         self.test = test
         self.kids = []
-        self.class_label = class_label
 
         # set id, then increment the static node_count
         self.id = DecisionTree.node_count
@@ -33,10 +32,6 @@ class DecisionTree:
     def evaluate(self, example):
         """ Returns the classification of the given example using this tree."""
 
-        if (self.class_label != None):
-            # this is leaf node
-            return self.class_label
-
         # apply this node's test on the example
         result = example[self.test]
 
@@ -47,10 +42,7 @@ class DecisionTree:
     def __str__(self):
         """ overrides the str operator for a decision tree."""
 
-        if self.test != None:
-            return "\"AU" + str(self.test + 1) + "\""
-            
-        return "\"Emotion: " + str(self.class_label) + "\""
+        return "\"AU" + str(self.test + 1) + "\""             
 
     
     def get_id(self):
@@ -85,10 +77,6 @@ class DecisionTree:
     
     def get_edges(self):
         """ returns text declaring the nodes and their edges in dot format."""
-        
-        if (len(self.kids) == 0):
-            # leaf node has no edge
-            return ""
 
         #  get the dot format information about this subtree's edges
         edges_info = ""
@@ -97,9 +85,38 @@ class DecisionTree:
             edges_info += self.kids[i].get_id() + self.kids[i].get_label() + "\n"
             # get declaration of edge in dot format
             edges_info += self.get_id() + " -> " + self.kids[i].get_id() + "[label=" + str(i) + "]\n"
-            # make recursive call to get info about this kid's edge
+            
+            # make recursive call to get info about this kid's edge unless its a node
+#            if (isinstance(self.kids[i], DecisionTree)):
             edges_info += self.kids[i].get_edges()
 
         return edges_info
     
     
+class LeafNode(DecisionTree):
+    """ Represents a leaf node in the decision tree
+        @members:
+           class_label: Label for the leaf node only, None otherwise. has value 0 or 1
+                        for negative-positive respectively, as dictated by the majority
+                        of examples.
+    """
+
+    def __init__(self, class_label):
+        """ initializes the leaf node """
+        
+        self.class_label = class_label
+
+        # call to super constructor
+        super(LeafNode, self).__init__()
+    
+        
+    def evaluate(self, example):
+        """ Returns class_label"""
+
+        return self.class_label
+
+    def __str__(self):
+        """ overrides the str operator for a leaf node."""
+            
+        return "\"Decision: " + str(self.class_label) + "\""
+
