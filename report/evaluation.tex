@@ -1,20 +1,41 @@
+
+
 talk about evaluation here
 
 
+To perform this evaluation, a 10-fold cross-validation is performed in order to assess the decision tree’s accuracy.
+Using the cross-validation an average error of the ten estimates is 10\% was discovered.
+
+Having the 10-fold cross validation calculated on the training set, the classified results
+are used to generate a confusion matrix.
+To be more specific, the 10 predicted subsets are concatenated
+and passed along with the actual target labels into a function responsible for the calculation of the confusion matrix.
+
+From those matrix, it can be observed that the correct classifications for each class are on the matrix’s diagonal.
+We can also state that, for the two sets of data, some \"similar\" emotion are confused.
+
 \include*{confusion_matrix_clean}
 
-From this matrix it can be observed that the correct classifications for each class are on the matrix’s diagonal.
-We can also state that some 'similar' emotion are confused. 
 For example, for those clean data, <Fear> could be confused with <Digust> or <Anger>.
-
+Those confusions could happen in real faces recognitions for humans.
+On the other hand <Happyness> seems to be the well recognised emotion, but we will
+analyse Average Recall and Precision Rates for clean dataset for more details. 
 
 
 \include*{recall_and_precision_rates_clean}
 
+For the calculation of the precision and the recall rates per class, two formulas have been used.
+Those formulas use information from the confusion matrix to calculate those two rates.
+
+For the clean data set, it's clear that the well recognised emitions are happyness and surpise, with higher rates of F1 measure. 
+We can also conclude that anger and fear are less recogniseable than other emotion.
 
 \include*{confusion_matrix_noisy}
+
+The main difference for the noisy data is that the diagonal of the matrix show less matches than the clean data set, but stay the main recognition for the emotions.
+We can still observe some confusions between labels, and the tendances that we state for clean data set remain the same.
 
 
 \include*{recall_and_precision_rates_noisy}
 
-
+The noisy data set confirm the results made on clean data set, and clearly show an higher recognition for happiness and suprised.
