@@ -126,15 +126,15 @@ def cross_validation(examples, labels, k = 10):
         # get predictions using trained trees
         predictions = test_trees(trained_trees, test_examples)
         
-        # compute error rate add it to the total error rate
-        average_error_rate += get_error_rate(predictions, test_labels)/k
-
         # add predictions and test_labels to their respective totals
         total_predictions += predictions
         total_labels += test_labels
         
     # compute confusion matrix
     confusion_matrix = get_confusion_matrix(total_predictions, total_labels)
+
+    # compute average error rate
+    average_error_rate  = get_error_rate(total_predictions, total_labels)
     
     return confusion_matrix, average_error_rate
 
