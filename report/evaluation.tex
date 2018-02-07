@@ -7,7 +7,7 @@ To be more specific, the 10 predicted subsets are concatenated
 and passed along with the actual target labels into a function responsible for the calculation of the confusion matrix.
 
 From those matrix, it can be observed that the correct classifications for each class are on the matrix’s diagonal.
-We can also state that, for the two sets of data, some \"similar\" emotion are confused.
+We can also state that, for the two sets of data, some similar emotion are confused.
 
 \include*{confusion_matrix_clean}
 
@@ -26,7 +26,7 @@ For the clean data set, it's clear that the well recognised emitions are happine
 We can also conclude sadness is less recogniseable than other emotions.
 
 
-average classification rate
+average classification rate:
 71.6\%
  
 \include*{confusion_matrix_noisy}
@@ -40,13 +40,20 @@ We can still observe some confusions between labels, especialluy between disgust
 The noisy data set confirm the results made on clean data set, and clearly show an higher recognition for happiness and suprised. However, even if sadness still shows a low F1 measure, anger have a lower measure than all the others. This can be explained by the fact that anger and sadness can be confused in the real world, which is closer to noisy data. 
 
 
-average classification rate
+average classification rate:
 60.6\%
 
+
+CONCLUSION OF EVALUATION
+
+We can see that when using both strategies to determine the class, Class 4 (happiness) seems to have higher recognition, and Class 5 (sadness) is what gets recognised least and is mostly confused with anger. This may also be due to the fact that we have plenty of data for class 4 and not so much for class 5.
+From the performance analysis of noisy data, we can see that again class 4 is recognised with high precision when using balanced tree classification and class 2 (disgust) is recognised with more precision when using length based classification. Both strategies have difficulties in identifying class 1 and class 5.
+
+TITLE: CLASSIFICATION RATE
 
 Finally the classification rate show that with clean data we can classify more emotions than with noisy data, which could seam logical. 
 We can also state the tree are well trained beacuse we have more than 60\% for each data set wich are good rates. 
 
 
 
-Give CLASSIFICATION RATE
+
