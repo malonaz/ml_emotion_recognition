@@ -16,9 +16,9 @@ We can also state that, for the two sets of data, some \"similar\" emotion are c
 
 \include*{confusion_matrix_clean}
 
-For example, for those clean data, <Fear> could be confused with <Digust> or <Anger>.
+For example, for those clean data, Sadness could be confused with Digust or Anger, which is logical when we can assume that sadness is a mix between those two emotions. 
 Those confusions could happen in real faces recognitions for humans.
-On the other hand <Happyness> seems to be the well recognised emotion, but we will
+On the other hand Happiness seems to be the well recognised emotion, but we will
 analyse Average Recall and Precision Rates for clean dataset for more details. 
 
 
@@ -27,15 +27,15 @@ analyse Average Recall and Precision Rates for clean dataset for more details.
 For the calculation of the precision and the recall rates per class, two formulas have been used.
 Those formulas use information from the confusion matrix to calculate those two rates.
 
-For the clean data set, it's clear that the well recognised emitions are happyness and surpise, with higher rates of F1 measure. 
-We can also conclude that anger and fear are less recogniseable than other emotion.
+For the clean data set, it's clear that the well recognised emitions are happiness and surpise, with higher rates of F1 measure. 
+We can also conclude sadness is less recogniseable than other emotions.
 
 \include*{confusion_matrix_noisy}
 
 The main difference for the noisy data is that the diagonal of the matrix show less matches than the clean data set, but stay the main recognition for the emotions.
-We can still observe some confusions between labels, and the tendances that we state for clean data set remain the same.
+We can still observe some confusions between labels, especialluy between disgust sadness and anger, and the tendances that we state for clean data set remain the same (recognition of surprise and happinness).
 
 
 \include*{recall_and_precision_rates_noisy}
 
-The noisy data set confirm the results made on clean data set, and clearly show an higher recognition for happiness and suprised.
+The noisy data set confirm the results made on clean data set, and clearly show an higher recognition for happiness and suprised. However, even if sadness still shows a low F1 measure, anger have a lower measure than all the others. This can be explained by the fact that anger and sadness can be confused in the real world, which is closer to noisy data. 
