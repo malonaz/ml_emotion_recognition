@@ -29,18 +29,15 @@ emotions, while Sadness is the least. \\
 When computing the classification rate, the CBC manual defines one way but the lecture defines it another way:\\
 \include*{report/equations}
 
-INSERT WAY1
-INSERT WAY2
-
 We wish to get the classification error of the model, the model being the combination of our six trues.
 Hence, we choose to treat the model as a blackbox and wish only to know when our model has classified an emotion correctly.
-
-The average classification rate computed from the cross validation's average error rate
-clocks in at 71.6\%. Let us now turn to the noisy dataset, in hopes of seeing questions answered.
+Hence, we use the first equation in the cross-validation to compute the average error rate and then compute our classification
+rate as 1 - the average error rate. For the clean dataset, the classification clocks in at 71.6\%.
+Let us now turn to the noisy dataset, in hopes of seeing questions answered.
 
  
 \include*{report/confusion_matrix_noisy}
-
+\newpage
 Confusion matrices make for poor comparison tools when it comes to comparing two datasets.
 Beyond the fact that the two datasets don't have the same number of data points,
 they also do not come in the same proportion for each emotion. For example, there are 132 Anger examples in the clean dataset but only
