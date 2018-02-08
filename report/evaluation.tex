@@ -26,7 +26,12 @@ where we weight the two aforementioned rates equally. These rates are computed f
 observe the bigger picture. Here, we can see that Happiness and Surprise are the most precisely and accurately recognizable
 emotions, while Sadness is the least. \\
 
-When computing the classification rate, the CBC manual defines it two ways:\\
+When computing the classification rate, the CBC manual defines one way but the lecture defines it another way:\\
+INSERT WAY1
+INSERT WAY2
+
+We wish to get the classification error of the model, the model being the combination of our six trues.
+Hence, we choose to treat the model as a blackbox and wish only to know when our model has classified an emotion correctly.
 
 The average classification rate computed from the cross validation's average error rate
 clocks in at 71.6\%. Let us now turn to the noisy dataset, in hopes of seeing questions answered.
