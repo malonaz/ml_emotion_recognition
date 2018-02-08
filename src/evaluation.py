@@ -1,12 +1,16 @@
 from data_loader import *
 from training import *
 from random import randrange
+from random import seed
 from numpy import zeros
 
 ##### PART III: EVALUATION
 
 def get_k_folds(examples, labels, k = 10):
     """ Splits the given data into k folds and returns it as a list."""
+
+    # seed random
+    seed(345)
 
     # convert examples to list. (they might be in numpy array format). this does not modify originals!
     examples = list(examples)
@@ -35,7 +39,7 @@ def get_k_folds(examples, labels, k = 10):
 
         # fold is complete. append to k_folds   
         k_folds.append([fold_examples, fold_labels])
-        
+
     return k_folds
 
 
