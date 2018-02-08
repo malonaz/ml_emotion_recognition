@@ -25,22 +25,25 @@ The table above shows the precision and recall rates for the clean dataset, as w
 where we weight the two aforementioned rates equally. These rates are computed from the confusion matrix and allow us to
 observe the bigger picture. Here, we can see that Happiness and Surprise are the most precisely and accurately recognizable
 emotions, while Sadness is the least. The average classification rate computed from the cross validation's average error rate
-clocks in a 71.6\%. Let us now turn to the noisy dataset, in hopes of seeing questions answered.
+clocks in at 71.6\%. Let us now turn to the noisy dataset, in hopes of seeing questions answered.
 
  
 \include*{confusion_matrix_noisy}
 
-The main difference for the noisy data is that the diagonal of the matrix show less matches than the clean data set, but stay the main recognition for the emotions.
-We can still observe some confusions between labels, especialluy between disgust sadness and anger, and the tendances that we state for clean data set remain the same (recognition of surprise and happinness).
-
+Confusion matrices make for poor comparison tools when it comes to comparing two datasets.
+Beyond the fact that the two datasets don't have the same number of data points,
+they also do not come in the same proportion for each emotion. For example, there are 132 Anger examples in the clean dataset but only
+88 in the noisy dataset. As such, we abstain from making absolute comparisons and instead discuss patterns within the rows
+of this confusion matrix. We observe again that Anger claims many examples of Sadness but also Fear this time. Perhaps one or two facial
+muscles which are responsible for distinguishing Fear from Sadness, are obfuscated by the noise.
+It seems that the noise has exacerbated patterns exhibited in the clean dataset.
 
 \include*{recall_and_precision_rates_noisy}
 
-The noisy data set confirm the results made on clean data set, and clearly show an higher recognition for happiness and suprised. However, even if sadness still shows a low F1 measure, anger have a lower measure than all the others. This can be explained by the fact that anger and sadness can be confused in the real world, which is closer to noisy data. 
-
-
-average classification rate:
-60.6\%
+The F\textsubscript{1} measure rates for Anger and Sadness tumble to a paltry ~28\% and ~38\% respectively.
+It seems the few attributes that allowed some identification of these emotions do not make it past the noise.
+Happiness and Surprise remain well identified, albeit at a lowest percentage.
+We observe an average classification rate of 60.6\% for the noisy dataset.
 
 
 CONCLUSION OF EVALUATION
