@@ -10,7 +10,7 @@ which emotion misappropriates it.
 \include*{confusion_matrix_clean}
 
 The above confusion matrix reveals interesting aspects of the clean dataset.
-The Anger decision trees classifies over 10\% of Sadness examples incorrectly as examples of Anger, but only 1\% of Surprise examples.
+The Anger decision trees misclassifies over 10\% of Sadness examples as Anger, but only 1\% of Surprise examples.
 Similarly, the Sadness decision tree misappropriates 10\% of Disgust examples.
 Such patterns emerge upon closer examination of such metrics: Fear is often confused with Surprise, but Happiness is rarely confused with Fear.
 Intuitively, since we are looking at a clean dataset,
@@ -21,20 +21,11 @@ of emotion is inherently subjective in nature.
 
 \include*{recall_and_precision_rates_clean}
 
-average classification rate: 71.6\%
-
 The table above shows the precision and recall rates for the clean dataset, as well as the F\textsubscript{1} measure,
 where we weight the two aforementioned rates equally. These rates are computed from the confusion matrix and allow us to
 observe the bigger picture. Here, we can see that Happiness and Surprise are the most precisely and accurately recognizable
-emotions, while Sadness is the least.
-
-For the calculation of the precision and the recall rates per class, two formulas have been used.
-Those formulas use information from the confusion matrix to calculate those two rates.
-
-For the clean data set, it's clear that the well recognised emitions are happiness and surpise, with higher rates of F1 measure. 
-We can also conclude sadness is less recogniseable than other emotions.
-
-
+emotions, while Sadness is the least. The average classification rate computed from the cross validation's average error rate
+clocks in a 71.6\%. Let us now turn to the noisy dataset, in hopes of seeing questions answered.
 
  
 \include*{confusion_matrix_noisy}
