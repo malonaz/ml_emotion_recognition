@@ -82,7 +82,7 @@ def lowest_tiebreaker(pos_predictions):
 
 
 
-def classify_example(trees, example, tiebreaker_function = deepest_tiebreaker):
+def classify_example(trees, example, tiebreaker_function = lowest_tiebreaker):
     """ returns a prediction of the example's class using the given trees,
         uses the given tie break to break up any tie."""
 
@@ -208,7 +208,7 @@ def get_recall_precision_rates(confusion_matrix):
     return recall_rates, precision_rates
         
 
-def get_f_measures(recall_rates, precision_rates, alpha = 2):
+def get_f_measures(recall_rates, precision_rates, alpha = 1):
     """ Computes the F_a measures of all 6 recall & precision rates duos and returns it. """
 
     # used to store f1 measures
@@ -221,8 +221,8 @@ def get_f_measures(recall_rates, precision_rates, alpha = 2):
         precision = precision_rates[i]
 
         # compute f1_measure and append it to f1_measures
-        f1_measure = ((1 + alpha)*precision*recall)/(alpha*precision + recall)
+        f1_measure = ((1 + alpha*alpha)*precision*recall)/(alpha*alpha*precision + recall)
         f1_measures[i] = f1_measure
-        
 
+        
     return f1_measures
