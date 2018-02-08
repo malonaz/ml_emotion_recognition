@@ -23,7 +23,17 @@ graphs:  $(GRAPHS_OBJECTS:.dot=.pdf)
 
 ### REPORT
 
-REPORT_OBJECTS = report/report.aux report/report.log report/report.out report/report.pdf
+REPORT_OBJECTS = report.aux report.log report.out 
+
+report: report/report.pdf
+
+
+report/report.pdf: $(GRAPHS_OBJECTS:.dot=.pdf) report/report.tex
+	pdflatex report/report.tex
+	rm -rf $(REPORT_OBJECTS)
+	mv report.pdf report
+
+
 
 ### PHONY
 
