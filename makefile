@@ -23,12 +23,13 @@ graphs:  $(GRAPHS_OBJECTS:.dot=.pdf)
 
 ### REPORT
 
-REPORT_OBJECTS = report.aux report.log report.out 
+REPORT_OBJECTS = report.aux report.log report.out
+REPORT_SRC = report/implementation.tex report/ambiguity.tex report/evaluation.tex
 
 report: report/report.pdf
 
 
-report/report.pdf: $(GRAPHS_OBJECTS:.dot=.pdf) report/report.tex
+report/report.pdf: $(GRAPHS_OBJECTS:.dot=.pdf) report/report.tex $(REPORT_SRC)
 	pdflatex report/report.tex
 	rm -rf $(REPORT_OBJECTS)
 	mv report.pdf report

@@ -7,7 +7,7 @@ identifies an example more often than not. Such observations are more easily inf
 The interest in the confusion matrix lies in examining where the misclassified examples end or to be more specific,
 which emotion misappropriates it. 
 
-\include*{confusion_matrix_clean}
+\include*{report/confusion_matrix_clean}
 
 The above confusion matrix reveals interesting aspects of the clean dataset.
 The Anger decision trees misclassifies over 10\% of Sadness examples as Anger, but only 1\% of Surprise examples.
@@ -19,16 +19,20 @@ This could be improved on by including  more than 45 facial muscles.
 Another reason for these confusions could arise from the data being collected from mixed emotions, perhaps because facial display
 of emotion is inherently subjective in nature.
 
-\include*{recall_and_precision_rates_clean}
+\include*{report/recall_and_precision_rates_clean}
 
 The table above shows the precision and recall rates for the clean dataset, as well as the F\textsubscript{1} measure,
 where we weight the two aforementioned rates equally. These rates are computed from the confusion matrix and allow us to
 observe the bigger picture. Here, we can see that Happiness and Surprise are the most precisely and accurately recognizable
-emotions, while Sadness is the least. The average classification rate computed from the cross validation's average error rate
+emotions, while Sadness is the least. \\
+
+When computing the classification rate, the CBC manual defines it two ways:\\
+
+The average classification rate computed from the cross validation's average error rate
 clocks in at 71.6\%. Let us now turn to the noisy dataset, in hopes of seeing questions answered.
 
  
-\include*{confusion_matrix_noisy}
+\include*{report/confusion_matrix_noisy}
 
 Confusion matrices make for poor comparison tools when it comes to comparing two datasets.
 Beyond the fact that the two datasets don't have the same number of data points,
@@ -38,7 +42,7 @@ of this confusion matrix. We observe again that Anger claims many examples of Sa
 muscles which are responsible for distinguishing Fear from Sadness, are obfuscated by the noise.
 It seems that the noise has exacerbated patterns exhibited in the clean dataset.
 
-\include*{recall_and_precision_rates_noisy}
+\include*{report/recall_and_precision_rates_noisy}
 
 The F\textsubscript{1} measure rates for Anger and Sadness tumble to a paltry ~28\% and ~38\% respectively.
 It seems the few attributes that allowed some identification of these emotions do not make it past the noise.
