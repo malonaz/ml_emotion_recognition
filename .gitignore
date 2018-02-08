@@ -1,8 +1,6 @@
 # files to ignore 
 *.pyc
 
-graphs
-
 matlab
 
 output
