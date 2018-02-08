@@ -1,33 +1,15 @@
-TITLE: Noisy-Clean Datasets Question
+Decision Trees are built using datasets and as such, their precision and accuracy rely heavily on the quality of the data.
+As such, when fed noisy data with missing or wrongly detected attributes, decision trees need relatively more data to
+to perform at a high level. Here the noisy dataset was equal to the clean dataset in magnitude, yet the quality of its data points
+inferior in quality. This is a situation prone to overfitting and we must introduce pruning methods in order to disregard attributes
+that are exhibited by noise rather than by examples themselves.
 
+Anger in the clean dataset has an F\textsubscript{1} measure of 64.66\%, versus 27.96\% in the noisy dataset.
+The accuracy almost halves when using the noisy data but taking a closer look at the metrics, we see that the precision
+rate is the stronger culprit in such a low f\textsubscript{1} measure. This implies that the Anger tree is incorrectly claiming
+data points as examples of anger. This may be explained by quality of data, lack of data and consequently an underdevelopped tree.
 
-It's clear we can identify performance diferrences between clean and noisy datasets.
-Due to the fact that some data and attributes are missing in the noisy set, decision trees have more
-difficulties to identify emotion and particurlarly anger and sadness.
-Classification rate is dependant on the data quality and the algorithm used, 
-and since the algorithm is fixed, we know that the noisy dataset has not truly
-captured the actual attributes needed to distinguish between the emotions.
-
-
-We can compare the performance for each emotion using clean and noisy dataset and
-F1 value. In fact, it takes a weighted average of both recall rate and precision value. 
-
-
-Anger in the clean set has an F1 value of 64.66\%, where as in the noisy dataset this 
-value reduces significantly to 27.96\%, which implies that the accuracy almost halves 
-when using the noisy data. 
-
-All the other emotions remain F1 values which are proportionnal to the clean dataset. 
-Because of the lack of some missing attributes, it's normal to find reduction of the
-F1 value for all the emotions.
-
-Fear's F1 value has reduced from 64.17\% to 54.35\%. 
-Happiness's F1 value has also reduced from 82.12\% to 68.60\%.
-Sadness from 53.30\% to 38.56\%. 
-Surprise from 81.20\% to 72.05\%.
-
-Surprise emotion seems to be easier one to identify with a very low decrease of F1 value
-with noisy data.  
-
-These values are expected since the reduction is not too great and given the 
-fact that noisy data is not completely accurate.
+All emotions retain F\textsubscript{1} values that are proportionally lower to the clean dataset. 
+Surprise emotion seems to be easiest emotion to identify with only a slight decrease of F\subscript{1} value with noisy data.
+Since noisy datasets are obtained from automated recognition systems, it seems that computers do a significantly better job at
+breaking down the facial muscle components of happiness than they do breaking down Sadness or Anger.
