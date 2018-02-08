@@ -1,15 +1,15 @@
 Decision Trees are built using datasets and as such, their precision and accuracy rely heavily on the quality of the data.
-As such, when fed noisy data with missing or wrongly detected attributes, decision trees need relatively more data to
-to perform at a high level. Here the noisy dataset was equal to the clean dataset in magnitude, yet the quality of its data points
+Consequently, when fed noisy data with missing or wrongly detected attributes, decision trees need relatively more data to
+perform at the same level as trees trained with clean datasets. Here the noisy dataset was equal to the clean dataset in magnitude, yet the quality of its data points
 inferior in quality. This is a situation prone to overfitting and we must introduce pruning methods in order to disregard attributes
 that are exhibited by noise rather than by examples themselves.
 
 Anger in the clean dataset has an F\textsubscript{1} measure of 64.66\%, versus 27.96\% in the noisy dataset.
 The accuracy almost halves when using the noisy data but taking a closer look at the metrics, we see that the precision
-rate is the stronger culprit in such a low f\textsubscript{1} measure. This implies that the Anger tree is incorrectly claiming
-data points as examples of anger. This may be explained by quality of data, lack of data and consequently an underdevelopped tree.
+rate is the stronger culprit in such a low F\textsubscript{1} measure. This implies that the Anger tree is incorrectly claiming
+data points as examples of anger. This may be explained by both quality of data and lack of data.
 
 All emotions retain F\textsubscript{1} values that are proportionally lower to the clean dataset. 
-Surprise emotion seems to be easiest emotion to identify with only a slight decrease of F\textsubscript{1} value with noisy data.
+Surprise emotion seems to be the easiest emotion to identify with only a slight decrease of F\textsubscript{1} value with noisy data.
 Since noisy datasets are obtained from automated recognition systems, it seems that computers do a significantly better job at
-breaking down the facial muscle components of happiness than they do breaking down Sadness or Anger.
+breaking down the facial muscle components of Happiness than they do breaking down Sadness or Anger. 
