@@ -22,7 +22,7 @@ def get_k_folds(examples, labels, k = 10):
     # size of a fold
     fold_size = len(examples)/k
 
-    for i in range(k):
+    for i in range(k - 1):
         fold_examples = []
         fold_labels = []
         
@@ -40,6 +40,9 @@ def get_k_folds(examples, labels, k = 10):
         # fold is complete. append to k_folds   
         k_folds.append([fold_examples, fold_labels])
 
+    # now add the rest to the last fold
+    k_folds.append([examples, labels])
+    
     return k_folds
 
 
