@@ -48,7 +48,8 @@ We choose not to include the extra 4 in any of the folds in order to keep the fo
 \emph{test\_trees()} takes trained trees and a list of examples to return a vector label predictions.\\
 \emph{get\_error\_rate()} returns the error rates of predictions versus their true values, as dictated by the specs.\\
 \emph{get\_get\_k\_folds()} creates k folds from the given examples and labels. the k folds obtained are always the same
-because we seed the random number generator, for testing purposes. This way, we can repeat results if need be.
+because we seed the random number generator, for testing purposes. This way, we can compare different methods of breaking ties
+when classifying examples with the \emph{test\_trees()} function.
 Here we use 10 folds, which does not divide well into 1004 or 1001, the respective sizes of the clean and noisy datasets.
 To make sure we use the max number of examples, we get 9 folds randomly, and assign the last 104 or 101 examples to the
 10th fold.\\
