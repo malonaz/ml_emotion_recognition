@@ -42,5 +42,5 @@ report/report.pdf: $(GRAPHS_OBJECTS:.dot=.pdf) report/report.tex $(REPORT_SRC)
 
 
 clean:
-	rm -rf src/*.pyc graphs/* output/* $(REPORT_OBJECTS)
+	rm -rf src/*.pyc  output/* $(REPORT_OBJECTS) $(GRAPHS_OBJECTS) $(GRAPHS_OBJECTS:.dot=.pdf)
 
