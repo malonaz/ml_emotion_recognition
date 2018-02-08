@@ -46,24 +46,58 @@ def get_k_folds(examples, labels, k = 10):
     return k_folds
 
 
-def classify_example(trees, example):
-    """ returns a prediction of the example's class using the given trees."""
+def random_tiebreaker(pos_predictions):
+    """ breaks a tie by simply return a random positive prediction."""
+    
+    # generate a random index of the non-empty pos_prediction list
+    random_index = randrange(len(pos_predictions))
+
+    return pos_predictions[random_index][0]
+
+
+def deepest_tiebreaker(pos_predictions):
+    """ breaks a tie by return the prediction that was found at the deepest node."""
+
+    # find deepest level
+    deepest_level = max(pos_predictions, key = lambda (emotion, level): level)[1]
+    
+    # keep only emotions with the deepest level
+    deep_pos_predictions = filter(lambda (emotion, level): level == deepest_level, pos_predictions)
+
+    # break ties randomly, in case there are two candidates
+    return random_tiebreaker(deep_pos_predictions)
+
+
+def lowest_tiebreaker(pos_predictions):
+    """ breaks a tie by return the prediction that was found at the most shallow node."""
+
+    # find lowest level
+    most_shallow_level = min(pos_predictions, key = lambda (emotion, level): level)[1]
+    
+    # keep only emotions with the deepest level
+    shallow_pos_predictions = filter(lambda (emotion, level): level == most_shallow_level, pos_predictions)
+
+    # break ties randomly, in case there are two candidates
+    return random_tiebreaker(shallow_pos_predictions)
+
+
+
+def classify_example(trees, example, tiebreaker_function = deepest_tiebreaker):
+    """ returns a prediction of the example's class using the given trees,
+        uses the given tie break to break up any tie."""
 
     # get each tree's classification of the given example
     predictions = map(lambda tree: tree.evaluate(example), trees)
 
-    # get the indices of predictions that are a match
-    pos_predictions = [i + 1 for i in range(len(predictions)) if predictions[i]]
+    # get the emotions of predictions that are a match along with the depth at which they were found
+    pos_predictions = [(i + 1, predictions[i][1]) for i in range(len(predictions)) if predictions[i][0]]
 
     if (pos_predictions == []):
         # no match with any tree. return random value between 1 and 6
         return randrange(1, 7)
 
-    # generate a random index of the non-empty pos_prediction list
-    random_index = randrange(len(pos_predictions))
-
-    return pos_predictions[random_index]
-
+    # use given tiebreaker_function
+    return tiebreaker_function(pos_predictions)
 
 
 def test_trees(trees, examples):

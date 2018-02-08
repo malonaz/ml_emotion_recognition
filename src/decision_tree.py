@@ -29,14 +29,15 @@ class DecisionTree(object):
         self.kids.append(kid)
 
 
-    def evaluate(self, example):
-        """ Returns the classification of the given example using this tree."""
+    def evaluate(self, example, level = 0):
+        """ Returns the classification of the given example using this tree along with the depth level 
+            at which this classification was found in the tree."""
 
         # apply this node's test on the example
         result = example[self.attribute_to_test]
 
-        # recursively go down the appropriate branch of this tree
-        return self.kids[result].evaluate(example)
+        # recursively go down the appropriate branch of this tree, incrementing the depth level by one
+        return self.kids[result].evaluate(example, level + 1)
 
         
     def __str__(self):
@@ -110,10 +111,10 @@ class LeafNode(DecisionTree):
         super(LeafNode, self).__init__()
     
         
-    def evaluate(self, example):
-        """ Returns class_label"""
+    def evaluate(self, example, level):
+        """ Returns class_label and the level at which this node is"""
 
-        return self.class_label
+        return self.class_label, level
 
     def __str__(self):
         """ overrides the str operator for a leaf node."""
