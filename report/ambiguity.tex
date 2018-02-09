@@ -20,7 +20,7 @@ We ran the algorithms 100 times, with different seed values, to get an average o
 The table above displays the results of our experiment.
 For both datasets, it seems that giving preference to nodes at shallow levels provides a higher classification rate.
 More telling though, is the random strategy outperforming the deepest node strategy.
-Intuitively, giving preference to deep nodes is more susceptible to overfitting than random or shallow, as deeper nodes
-deal with fewer number of examples and will have a test tailored to small subsets of the datasets.
+Intuitively, giving preference to deep nodes exposes the model to overfitting than random or shallow strategies would, as deeper nodes
+deal with fewer number of examples and will choose an attribute test tailored to small subsets of the datasets.
 We chose to implement the shortest method as default to classify emotions.
 
