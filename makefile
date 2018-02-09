@@ -8,6 +8,8 @@ main:
 test:
 	python src/test.py
 
+tar:
+	tar -cvf Assignment1.tar data graphs makefile output picked_trees report src
 
 #### FOR GRAPHS 
 
