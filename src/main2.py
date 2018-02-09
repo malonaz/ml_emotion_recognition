@@ -29,7 +29,6 @@ def main(dataset = "data/cleandata_students.mat", folder = "test_dataset"):
 
     # 11. get F_1 measures
     f1_measures = get_f_measures(recall_rates, precision_rates)
-    append_list(filename, f1_measures)
     
 
 
