@@ -80,7 +80,7 @@ Below, you will find the diagrams returns by the code snippet.
 
 
 \begin{figure}[h]
-    \caption{This is a figure.}
+    \caption{Clean dataset}
     \begin{center}
   \includegraphics[scale = 0.40]{graphs/clean_dataset/clean_pruning.png}
  \end{center}
@@ -89,17 +89,24 @@ Below, you will find the diagrams returns by the code snippet.
 
  \begin{figure}[h]
     \begin{center}
-    \caption{This is a figure.}
+    \caption{Noisy dataset}
   \includegraphics[scale = 0.40]{graphs/noisy_dataset/noisy_pruning.png} 
  \end{center}
 
   \end{figure}
 
-
+\newpage
 
 The data used to generate this graph comes from \emph{test()} function,
 taken from each level, and simply plots the number of terminal nodes at this level versus
 the cost of the tree obtained by pruning to this level.
 In red, you will find the results of the 'resubstitution' method and thus in blue, the results of the 'cross' method.
-
-
+As you can see, the 'resubstitution' method yields much lower costs at almost every number of terminal.
+This is explained as the 'resubstitution' evaluates its misclassification costs on the very data that was used to train
+the trees, which is sure to yield few misclassifications as opposed to cross-validation, which evaluates misclassification costs
+using the holdout fold that was not used to train the tree.
+Furthermore, the 'resubstitution' method costs stricly decrease as the number of terminal nodes increases.
+This results in the best level to prune at being '0' for both datasets and thus no pruning at all occurs.\\
+The 'cross' method however yields a best level that prunes the trees significantly, especially with the noisy dataset.
+This indicates that there is some level of overfitting present in our tree. This ties in quiet well with our previous discussions
+where we expressed our view emotions with few data points would introduce overfitting.
