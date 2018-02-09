@@ -1,5 +1,6 @@
 from training import *
 from evaluation import *
+from pickle_trees import *
 from numpy import savetxt, column_stack
 
 # the array is assumed to be either of proababilities of dependencies
@@ -11,6 +12,7 @@ def append_array(filename, anArray):
         f.write('\n')
     f.write('\n\n')
     f.close()
+    
 #Function to write a list to a results file
 def append_list(filename, aList):
     f = open(filename, 'a')
@@ -18,6 +20,7 @@ def append_list(filename, aList):
         f.write( '%6.3f ' % (aList[row]))
     f.write('\n\n')
     f.close()
+    
 #Function to write a string to a results file
 def append_string(filename, aString):
     f = open(filename, 'a')
@@ -43,41 +46,44 @@ def main(dataset, folder):
     # 3. train 6 trees on the dataset
     trained_trees = train_trees(examples, labels)
 
-    # 4. generate graphs in (graphs folder) for each tree
+    # 4. save trees in pickle format
+    save_trees_to_pickle(trained_trees, folder)
+                
+    # 5. generate graphs in (graphs folder) for each tree
     visualize_trees(trained_trees, folder)
 
-    # 5. perform cross_validation
+    # 6. perform cross_validation
     confusion_matrix, average_error_rate = cross_validation(examples, labels)
     append_string(filename, "\nperformed cross_validation")
 
-    # 6. print confusion matrix
+    # 7. print confusion matrix
     append_string(filename, "\nconfusion matrix")
     append_array(filename, confusion_matrix)
 
-    # 7. get recall and precision rates
+    # 8. get recall and precision rates
     recall_rates, precision_rates = get_recall_precision_rates(confusion_matrix)
 
-    # 8. print recall rates
+    # 9. print recall rates
     append_string(filename, "\nrecall rates")
     append_list(filename, recall_rates)
 
-    # 9. print precision rates
+    # 10. print precision rates
     append_string(filename, "\nprecision rates")
     append_list(filename, precision_rates)
 
-    # 10. print F_1 measures
+    # 11. print F_1 measures
     append_string(filename, "\nf1 measures")
     f1_measures = get_f_measures(recall_rates, precision_rates)
     append_list(filename, f1_measures)
     
-    # 10. print average classification rate
+    # 12. print average classification rate
     append_string(filename, "\naverage classification rate")
     append_string(filename, str(1 - average_error_rate))
 
 
 
     #########################################################
-    # TEX FILES FORMAT
+    # TEX FILES FORMAT. USED FOR LATEX REPORT
     savetxt("output/" + folder + "/confusion_matrix.txt", confusion_matrix, delimiter = " & ", fmt = "%i")
     savetxt("output/" + folder + "/recall_rates.txt", column_stack(recall_rates), delimiter = " & ", fmt = "%2.2f")
     savetxt("output/" + folder + "/precision_rates.txt", column_stack(precision_rates), delimiter = " & ", fmt = "%2.2f")
@@ -86,7 +92,7 @@ def main(dataset, folder):
 
     
 if __name__ == "__main__":
-
+    
     # call with clean data set
     main(CLEAN_DATA_STUDENTS, "clean_dataset")
 
