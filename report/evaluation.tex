@@ -1,22 +1,23 @@
 In this section, we will attempt to evaluate our decision tree model. We begin by using a 10-fold cross-validation
 in order to assess the precision and accuracy of our model. 
 
-To begin, let's take a closer look at the average confusion matrices of the datasets.
+Let's take a closer look at the average confusion matrices of the datasets.
 The relatively high numbers on the diagonal indicate that each emotion's decision tree correctly
 identifies an example more often than not. Such observations are more easily infered from metrics such as the precision or recall rate.
-The interest in the confusion matrix lies in examining where the misclassified examples end or to be more specific,
+The interest in the confusion matrix lies in examining where the misclassified examples get classified or to be more specific,
 which emotion misappropriates it. 
 
+\newpage
 \include*{report/confusion_matrix_clean}
 
 The above confusion matrix reveals interesting aspects of the clean dataset.
 The Anger decision trees misclassifies over 10\% of Sadness examples as Anger, but only 1\% of Surprise examples.
 Similarly, the Sadness decision tree misappropriates 10\% of Disgust examples.
-Such patterns emerge upon closer examination of such metrics: Fear is often confused with Surprise, but Happiness is rarely confused with Fear.
+Such patterns emerge upon closer examination of these metrics: Fear is often confused with Surprise, but Happiness is rarely confused with Fear.
 Intuitively, since we are looking at a clean dataset,
 the reason behind these misclassifications may take root in the muscle activations being similar for some emotions, such as Sadness and Disgust.
 This could be improved on by including  more than 45 facial muscles.
-Another reason for these confusions could arise from the data being collected from mixed emotions, perhaps because facial display
+Another reason for these confusions could arise from the data being collected from mixed emotions or perhaps because facial display
 of emotion is inherently subjective in nature.
 
 \include*{report/recall_and_precision_rates_clean}
@@ -26,14 +27,15 @@ where we weight the two aforementioned rates equally. These rates are computed f
 observe the bigger picture. Here, we can see that Happiness and Surprise are the most precisely and accurately recognizable
 emotions, while Sadness is the least. \\
 
-When computing the classification rate, the CBC manual defines one way but the lecture defines it another way:\\
-\include*{report/equations}
 
-We wish to get the classification error of the model, the model being the combination of our six trues.
-Hence, we choose to treat the model as a blackbox and wish only to know when our model has classified an emotion correctly.
-Hence, we use the first equation in the cross-validation to compute the average error rate and then compute our classification
-rate as 1 - the average error rate. For the clean dataset, the classification clocks in at 71.6\%.
-Let us now turn to the noisy dataset, in hopes of seeing questions answered.
+
+We now wish to get the classification error of the model, the model being the combination of our six trees.
+Hence, we choose to treat the model as a blackbox and wish to evaluate the rate at which our model classifies emotions correctly.
+We first compute the average error rate using the follow formula.
+\include*{report/equations}
+We then compute our classification rate as (1 - the average error rate).
+For the clean dataset, the classification clocks in at 71.6\%.
+Let us now turn to the noisy dataset, in hopes of seeing more questions answered.
 
  
 \include*{report/confusion_matrix_noisy}
@@ -48,15 +50,15 @@ It seems that the noise has exacerbated patterns exhibited in the clean dataset.
 
 \include*{report/recall_and_precision_rates_noisy}
 
-The F\textsubscript{1} measure rates for Anger and Sadness tumble to a paltry ~28\% and ~38\% respectively.
-It seems the few attributes that allowed some identification of these emotions do not make it past the noise.
-Happiness and Surprise remain well identified, albeit at a lowest percentage.
+The F\textsubscript{1} measure rates for Anger and Sadness tumble to a paltry $\sim$28\% and $\sim$38\% respectively.
+It seems the few attributes that allowed some identification of these emotions do not survive the noise.
+Happiness and Surprise remain well identified, albeit at a lower percentage.
 We observe an average classification rate of 60.6\% for the noisy dataset.
 
 
 We can see that trees trained on the clean, or noisy dataset, share similar patterns.
 Happiness exhibits the highest rate of recognition and Sadness the least.
-This general pattern is perhaps due to the fact that we have plenty of data for Happiness (~210) versus Sadness (~120).
+This general pattern is perhaps due to the fact that we have plenty of data for Happiness ($\sim$210) versus Sadness ($\sim$120).
 
 
 
