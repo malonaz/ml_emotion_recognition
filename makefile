@@ -1,4 +1,10 @@
 
+all: graphs report
+
+
+main:
+	python src/main.py
+
 
 #### FOR GRAPHS 
 
