@@ -12,8 +12,9 @@ This module contains the structure of a decision tree, which is made up of two t
 The \emph{Node} class represents an internal (non-leaf) node in the decision tree and is completely characterized by the attribute
 this node is testing as well as a kids array containing any children of this node. In this coursework, there are two children
 in an internal node, one for examples that test negative for this node's attribute and one for examples that test positive.
-In addition, the node has an id member used for graph generation purposes.
-A Node has an evaluate method which, given an example, tests its attribute and recurses into the appropriate kid's evaluate method. \\
+In addition, each \emph{node} has an id member used for graph generation purposes.
+A Node has an evaluate method which, given an example, check this example's value for the attribute it is responsible for testing.
+It uses this information to recurse into the appropriate kid's evaluate method. \\
 The \emph{LeafNode} class represents a leaf node in the decision tree and is a subclass of the \emph{Node} class.
 Thus, it inherits all its field, in addition to a new member representing the class label of this leaf node,
 a '0' or a '1' representing the decision of the tree.
