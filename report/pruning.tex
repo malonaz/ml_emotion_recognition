@@ -1,4 +1,5 @@
-We will now turn our attention to pruning methods. First we will analyze the functionality of the provided \emph{pruning\_example} function.
+We will now turn our attention to pruning methods. Pruning is concerned with removing specific branches to improve some metrics measuring
+the tree's performance. First we will analyze the functionality of the provided \emph{pruning\_example} function.
 We will conclude with a discussion of more general pruning.
 
 
@@ -34,40 +35,54 @@ plot(nodes2,cost2,'r-x','MarkerSize',8)
 plot(nodes2(bestLevel2+1),cost2(bestLevel2+1),'ks');
 \end{lstlisting}
 
-The function takes in the examples matrix x, as well as the label matrix y.
-These are then passed in to the \emph{classregtree} function
-which creates a classification tree that predicts the labels using the columns of the examples matrix.
+The \emph{classregtree()} function takes in the examples matrix x, as well as the label matrix y.
+It then creates a classification tree that predicts the labels using the columns of the examples matrix.\\
 The parameter 'categorical' tells the function to treat the columns of x (the attributes) as unordered categorical variables
 such that each attribute takes on one of a discrete, limited and fixed set of values (here '1' or '0').\\
 The parameter 'minparent = 1' dictates that impure nodes that contain 1 or more examples should be split.\\
 Since a node that contains 1 example is by definition pure,
-this really means that impure nodes that contain 2 or more examples should be split.
-The parameters 'prune = off' dictates that there should be no pruning of the tree.\\
+this really means that impure nodes that contain 2 or more examples should be split.\\
+The parameters 'prune = off' dictates that there should be no pruning of the tree.
 
 This function is actually different than the way we build trees because our model consists of six trees that each classify a given
 example.
-We extract a label from these six classifications from the trees, with various methods described in the ambiguity section.
-The classregtree works differently as it builds one tree, where the leaf nodes are not binary but instead can take one any of the 6 emotion values. For the purpose of this discussion, pruning, this will not matter as it can be applied to each of our trees to yield better classification rates.
+We then extract a label from these six classifications from the trees, with various methods described in the ambiguity section.
+The \emph{classregtree()} function works differently and builds one tree,
+where the leaf nodes are non-binary and instead take on one of the 6 emotion values.
+For the purpose of this discussion, pruning,
+this will not matter as it can be applied to each of our trees to yield better classification rates.
+
+The \emph{test()} function removes increasingly more nodes from the tree, in iterations called 'levels'.
+I could not find online how they define a level and how they decide which nodes to remove,
+but the general pattern is to prune from bottom to top increasingly.
+At each of these levels, it computes a cost of the tree, calculated as the parameters 'cross' and 'resubstitution' dictate it.
+If 'cross' is the parameter, the examples and labels are fed to the function as well, which are used to carry out a 10-fold
+cross-validation. When creating the 10 folds, it applies stratification such that labels are present in roughly equal proportions
+in each fold. I could not find which metric they use to extract a cost from the cross-validation, but I assume it is something
+like the average error rate.\\
+If 'substitution' is the parameter, the cost of the tree is computed as the sum over all of this level's terminal
+nodes of a node's estimated probability times its cost.
+A node's cost is is the sum of the misclassification costs of the examples at that node.
+Again, I could not find how they define misclassification costs.
+Note that the resubstitution cost is computed from the same sample that was used to train the tree as opposed to the cross-validation
+cost method.
 
 
 
-\begin{comment}
 
-\begin{figure}[t!]
-   \begin{minipage}[b]{0.60\linewidth}
-       \includegraphics[scale=0.20]{graphs/clean_dataset/clean_pruning.pdf}
-      \caption{Légende 1}
-   \end{minipage}\hfill
+\begin{figure}[htb]
+  \begin{center}
+    \caption{This is a figure.} 
+  \includegraphics[scale = 0.80]{graphs/clean_dataset/clean_pruning.pdf} 
 
-   \begin{minipage}[b]{0.60\linewidth}   
-      \centering \includegraphics[scale=0.20]{graphs/noisy_dataset/noisy_pruning.pdf}
-      \caption{Légende 2}
-   \end{minipage}
-
- \label{fig:cleanprunning2}
-\end{figure}
+  \end{center}
+  \end{figure}
 
 
-\end{comment}
+ \begin{figure}[htb]
+  \begin{center}
+    \caption{This is a figure.}
+  \includegraphics[scale = 0.80]{graphs/noisy_dataset/noisy_pruning.pdf} 
 
-
+  \end{center}
+  \end{figure}
