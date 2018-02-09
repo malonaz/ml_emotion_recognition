@@ -1,6 +1,5 @@
 
 all: graphs report
-	clear
 
 main:
 	python src/main.py
