@@ -55,6 +55,7 @@ this will not matter as it can be applied to each of our trees to yield better c
 The \emph{test()} function removes increasingly more nodes from the tree, in iterations called 'levels'.
 I could not find online how they define a level and how they decide which nodes to remove,
 but the general pattern is to prune from bottom to top increasingly.
+I believe they used a combination of the depth of a terminal node and the number of examples that lie at this node.
 At each of these levels, it computes a cost of the tree, calculated as the parameters 'cross' and 'resubstitution' dictate it.
 If 'cross' is the parameter, the examples and labels are fed to the function as well, which are used to carry out a 10-fold
 cross-validation. When creating the 10 folds, it applies stratification such that labels are present in roughly equal proportions
@@ -65,7 +66,16 @@ nodes of a node's estimated probability times its cost.
 A node's cost is is the sum of the misclassification costs of the examples at that node.
 Again, I could not find how they define misclassification costs.
 Note that the resubstitution cost is computed from the same sample that was used to train the tree as opposed to the cross-validation
-cost method.
+cost method.\\
+The method returns three vector, each of size equal to the number of levels of pruning. The first vector, cost, contains a cost
+of the tree for each level of pruning. The second vector contains the standard error of each cost value from the first vector.
+Again, it is not clear how they compute the standard error of the cost. The third vector simply lists the number of nodes at each
+level of pruning. Lastly, the method returns the level as the one that produces the smallest tree that is within one standard
+error of the minimum-cost subtree.
+
+The \emph{prune} function prunes a tree to the given desired level, and returns the pruned tree.
+Here it is called twice, once with the best level as per the 'substitution' method and one as per the 'cross' method.
+Below, you will find the diagrams returns by the code snippet.
 
 
 
@@ -86,3 +96,12 @@ cost method.
 
   \end{center}
   \end{figure}
+
+
+
+The data used to generate this graph comes from \emph{test} function,
+taken from each level, and simply plots the number of terminal nodes at this level versus
+the cost of the tree obtained by pruning to this level.
+In red, you will find the results of the 'resubstitution' method and thus in blue, the results of the 'cross' method.
+
+
