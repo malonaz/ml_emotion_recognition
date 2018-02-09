@@ -24,7 +24,8 @@ graphs:  $(GRAPHS_OBJECTS:.dot=.pdf)
 ### REPORT
 
 REPORT_OBJECTS = report.aux report.log report.out
-REPORT_SRC = report/report.tex report/implementation.tex report/ambiguity.tex report/evaluation.tex report/pruning.tex
+REPORT_SRC = report/report.tex report/implementation.tex report/ambiguity.tex \
+             report/evaluation.tex report/pruning.tex report/decision_trees.tex
 
 report: report/report.pdf
 
