@@ -5,6 +5,9 @@ all: graphs report
 main:
 	python src/main.py
 
+main2:
+	python src/main2.py
+
 
 #### FOR GRAPHS 
 
@@ -31,7 +34,8 @@ graphs:  $(GRAPHS_OBJECTS:.dot=.pdf)
 
 REPORT_DISCARDED_OUTPUT = report.aux report.log report.out
 REPORT_SRC = report/report.tex report/implementation.tex report/ambiguity.tex \
-             report/evaluation.tex report/pruning.tex report/decision_trees.tex
+             report/evaluation.tex report/pruning.tex report/decision_trees.tex \
+             report/testing.tex
 
 report: report/report.pdf
 
