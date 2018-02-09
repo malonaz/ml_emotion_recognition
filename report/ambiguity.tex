@@ -7,14 +7,15 @@ The first is trivial and simply chooses one of the candidate emotions at random.
 For the other solutions, we decided to use more information to make a decision and so we altered our classification algorithm
 to return not only the decision ('1' or '0' for yes or no), but also the depth within a tree at which this solution was found.
 Perhaps there is more confidence in a decision made on two attributes rather than 10? Perhaps it is the other way around.
-We decided to experiment and find out for ourselves. Recall that in our implementation section, we mentioned that when getting
-the folds, we seed the random number generator, such that folds from the same data sets are always the same. We introduced this
-in order to be able to compare these three methods. (no comparisons are drawn across different datasets here).\\
-
+We decided to experiment and find out for ourselves. Recall that in our implementation section, we mentioned that before getting
+the k folds, we seed the random number generator, such that folds from the same data sets are always the same. We introduced this
+in order to be able to compare these three methods. (no comparisons are drawn across different datasets here). \\
 
 \include*{report/average_classification_rate_clean}
 
-For the clean dataset, it seems that the shortest method provides a higher classification rate.
+We ran the algorithms 100 times, with different seed values, to get an average of the performances of these three methods.
+The table above displays the results of our experiment.
+For the clean dataset, it seems that giving preference to nodes at shallow levels provides a higher classification rate.
 This is why we choose the shortest methode to classify the emotions, even if there are no relevant differences for the noisy dataset.
 
 \include*{report/average_classification_rate_noisy}
