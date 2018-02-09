@@ -23,7 +23,7 @@ graphs:  $(GRAPHS_OBJECTS:.dot=.pdf)
 
 ### REPORT
 
-REPORT_OBJECTS = report.aux report.log report.out
+REPORT_DISCARDED_OUTPUT = report.aux report.log report.out
 REPORT_SRC = report/report.tex report/implementation.tex report/ambiguity.tex \
              report/evaluation.tex report/pruning.tex report/decision_trees.tex
 
@@ -32,14 +32,14 @@ report: report/report.pdf
 
 report/report.pdf: $(GRAPHS_OBJECTS:.dot=.pdf)  $(REPORT_SRC) 
 	pdflatex report/report.tex
-	rm -rf $(REPORT_OBJECTS)
+	rm -rf $(REPORT_DISCARDED_OUTPUT)
 	mv report.pdf report
 
 
 
 ### PHONY
 
-.PHONY: graphs test clean report
+.PHONY: clean
 
 
 clean:
