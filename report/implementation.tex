@@ -30,7 +30,8 @@ This method yields the same results yet improves the algorithm's complexity,
 as we are not repetitively recomputing the initial entropy of the node.
 Second, we noticed that deeper down a tree, multiple attributes may be candidates to be the best attribute on a certain node,
 because they offer the same information gain. We were faced with a dilemma: Should we simply
-take the first one of those candidate attributes? We decided to randomize a selection from the candidates.\\
+take the first one of those candidate attributes? Or should we select an attribute amongst the candidate attributes at random?
+We decided to select the first candidate as found from left to right in the original attribute list.\\
 Next, let us take a closer look at the implementation \emph{find\_majority\_value()}.\\
 What value should it return when the given binary targets contains an equal number of
 '0's and '1's? We decided to randomize the selection.\\
