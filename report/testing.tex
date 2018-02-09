@@ -3,7 +3,8 @@ If you run our code on a linux computer in the lab, there are no dependencies. I
 We have implemented a makefile to make your life easier and will proceed to explain the various commands available to you.
 
 \emph{make all} will run all the following make.\\
-\emph{make main} runs our main file src/main.py.\\
+\emph{make main} runs our main file src/main.py. Results can be found
+in the outputs folder.\\
 \emph{make graphs} will call src/main.py which will train trees, and generate png graphs of the decision trees, for vizualization purposes,
 for both clean and noisy datasets. You will find these in the graphs folder.
 These are directly compiled in our latex report.\\
@@ -11,7 +12,8 @@ These are directly compiled in our latex report.\\
 
 
 Note that our python main must always be called from the root folder, as filepaths are coded for such purpose.
-We have prepared a template main2.py file, that you may use when trying to test our trees on new data.
+We have prepared a template src/test.py file, that you may use when
+trying to test our trees on new data.
 Please use \emph{make test} to run it.
 
 

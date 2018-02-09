@@ -5,8 +5,8 @@ all: graphs report
 main:
 	python src/main.py
 
-main2:
-	python src/main2.py
+test:
+	python src/test.py
 
 
 #### FOR GRAPHS 
