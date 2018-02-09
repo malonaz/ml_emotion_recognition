@@ -73,33 +73,31 @@ Again, it is not clear how they compute the standard error of the cost. The thir
 level of pruning. Lastly, the method returns the level as the one that produces the smallest tree that is within one standard
 error of the minimum-cost subtree.
 
-The \emph{prune} function prunes a tree to the given desired level, and returns the pruned tree.
+The \emph{prune()} function prunes a tree to the given desired level, and returns the pruned tree.
 Here it is called twice, once with the best level as per the 'substitution' method and one as per the 'cross' method.
 Below, you will find the diagrams returns by the code snippet.
 
 
 
-
-\begin{figure}[htb]
-  \begin{center}
-    \caption{This is a figure.} 
-  \includegraphics[scale = 0.80]{graphs/clean_dataset/clean_pruning.pdf} 
-
-  \end{center}
-  \end{figure}
-
-
- \begin{figure}[htb]
-  \begin{center}
+\begin{figure}[h]
     \caption{This is a figure.}
-  \includegraphics[scale = 0.80]{graphs/noisy_dataset/noisy_pruning.pdf} 
+    \begin{center}
+  \includegraphics[scale = 0.40]{graphs/clean_dataset/clean_pruning.png}
+ \end{center}
+  \end{figure}
 
-  \end{center}
+
+ \begin{figure}[h]
+    \begin{center}
+    \caption{This is a figure.}
+  \includegraphics[scale = 0.40]{graphs/noisy_dataset/noisy_pruning.png} 
+ \end{center}
+
   \end{figure}
 
 
 
-The data used to generate this graph comes from \emph{test} function,
+The data used to generate this graph comes from \emph{test()} function,
 taken from each level, and simply plots the number of terminal nodes at this level versus
 the cost of the tree obtained by pruning to this level.
 In red, you will find the results of the 'resubstitution' method and thus in blue, the results of the 'cross' method.
