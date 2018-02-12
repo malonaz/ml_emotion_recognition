@@ -1,28 +1,28 @@
 We have divided the program into four modules. Let us walk through each module's functionality \& purpose.
 
-Module 1: Loading the Data \\
+\textbf{\underline{Module 1: Loading the Data}} \\
 This module serves two purposes.\\
-First, its \emph{load\_data()} function extracts the data from one of the two datasets
+First, its  \colorbox{lightgray}{\emph{load\_data()}} function extracts the data from one of the two datasets
 and returns two matrices containing the examples and labels, respectively. \\
-Second, its \emph{get\_binary\_targets()} function maps a matrix of labels to a matrix of binary targets for a chosen emotion,
+Second, the  \colorbox{lightgray}{\emph{get\_binary\_targets()}} function, maps a matrix of labels to a matrix of binary targets for a chosen emotion,
 such that a '1' indicates that a label represents this emotion and a '0' indicates otherwise.
 
-Module 2: Decision Tree Structure \\
+\textbf{\underline{Module 2: Decision Tree Structure}} \\
 This module contains the structure of a decision tree, which is made up of two types of objects. \\
-The \emph{Node} class represents an internal (non-leaf) node in the decision tree and is completely characterized by the attribute
+The  \colorbox{lightgray}{\emph{Node}} class represents an internal (non-leaf) node in the decision tree and is completely characterized by the attribute
 this node is testing as well as a kids array containing any children of this node. In this coursework, there are two children
 in an internal node, one for examples that test negative for this node's attribute and one for examples that test positive.
-In addition, each \emph{node} has an id member used for graph generation purposes.
+In addition, each \emph{node} has an \textbf{id member} used for graph generation purposes.
 A Node has an evaluate method which, given an example, check this example's value for the attribute it is responsible for testing.
 It uses this information to recurse into the appropriate kid's evaluate method. \\
-The \emph{LeafNode} class represents a leaf node in the decision tree and is a subclass of the \emph{Node} class.
+The  \colorbox{lightgray}{\emph{LeafNode}} class represents a leaf node in the decision tree and is a subclass of the  \colorbox{lightgray}{\emph{Node}} class.
 Thus, it inherits all its field, in addition to a new member representing the class label of this leaf node,
 a '0' or a '1' representing the decision of the tree.
-Lastly, it overrides the evaluate method of the Decision tree as there is no recursion at a leaf node, it simply returns its class label.\\
+Lastly, it overrides the evaluate method of the \emph{Decision Tree}, as there is no recursion at a leaf node, it simply returns its class label.\\
 
 
-Module 3: Training Decision Trees \\
-Let us begin this module's discussion with the implementation of \emph{choose\_best\_decision\_attribute()}. \\
+\textbf{\underline{Module 3: Training Decision Trees}} \\
+Let us begin this module's discussion with the implementation of  \colorbox{lightgray}{\emph{choose\_best\_decision\_attribute()}}. \\
 First, when seeking the best attribute to split the current node's examples on, we do not maximize the information gain.
 Instead, we minimize the information remainder (i.e. the average entropy of the two children nodes
 that would be created if splitting on a particular attribute).
@@ -32,25 +32,25 @@ Second, we noticed that deeper down a tree, multiple attributes may be candidate
 because they offer the same information gain. We were faced with a dilemma: Should we simply
 take the first one of those candidate attributes? Or should we select an attribute amongst the candidate attributes at random?
 We decided to select the first candidate as found from left to right in the original attribute list.\\
-Next, let us take a closer look at the implementation \emph{find\_majority\_value()}.\\
+Next, let us take a closer look at the implementation  \colorbox{lightgray}{\emph{find\_majority\_value()}}.\\
 What value should it return when the given binary targets contains an equal number of
 '0's and '1's? We decided to randomize the selection.\\
-We have created a \emph{train\_trees()} function that abstracts aways the lower-level workings of the training
+We have created a  \colorbox{lightgray}{\emph{train\_trees()}} function that abstracts away the lower-level workings of the training
 of trees. This function takes two matrices, examples and labels respectively,
 and returns six trained trees, one for each emotion.
-Lastly, we have a function \emph{vizualize\_trees()} that takes a list of trees and generates a graph dot file
+Lastly, we have a function  \colorbox{lightgray}{\emph{vizualize\_trees()}} that takes a list of trees and generates a \textbf{graph dot} file
 for each tree.
 
-Module 4: Evaluation \\
-\emph{test\_trees()} takes trained trees and a list of examples to return a vector label predictions.\\
-\emph{get\_error\_rate()} returns the error rates of predictions versus their true values, as dictated by the specs.\\
-\emph{get\_k\_folds()} creates k folds from the given examples and labels. the k folds obtained are always the same
+\textbf{\underline{Module 4: Evaluation}} \\
+\colorbox{lightgray}{\emph{test\_trees()}} takes trained trees and a list of examples to return a vector label predictions.\\
+\colorbox{lightgray}{\emph{get\_error\_rate()}} returns the error rates of predictions versus their true values, as dictated by the specs.\\
+\colorbox{lightgray}{\emph{get\_k\_folds()}} creates k folds from the given examples and labels. The k folds obtained are always the same
 because we seed the random number generator, for testing purposes.
-This way, we can compare different methods of breaking ties when classifying examples with the \emph{test\_trees()} function.
+This way, we can compare different methods of breaking ties when classifying examples with the  \colorbox{lightgray}{\emph{test\_trees()}} function.
 Here we use 10 folds, which does not divide well into 1004 or 1001, the respective sizes of the clean and noisy datasets.
 To make sure we use the max number of examples, we get 9 folds randomly, and assign the last 104 or 101 examples to the
 10th fold.\\
-Finally, let's talk about the \emph{cross\_validation()}.
+Finally, let's talk about the  \colorbox{lightgray}{\emph{cross\_validation()}}.
 For each fold, we train six trees on the rest of the folds. Next, we compute the vector of predictions on the current fold's data.
 The prediction vector of each fold and its corresponding true label vector are concatenated and used to generate the average confusion
 matrix and the average error rate.

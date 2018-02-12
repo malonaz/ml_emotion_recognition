@@ -1,20 +1,20 @@
 We have (regrettably) decided to implement our code in Python and as such, provide you with information on how to use our code.
-If you run our code on a linux computer in the lab, there are no dependencies. If you run it on your computer, you must install \emph{dot}, to generate graphs.
+If you run our code on a linux computer in the lab, there are no dependencies. If you run it on your computer, you must install \colorbox{lightgray}{\emph{dot}}, to generate graphs.
 We have implemented a makefile to make your life easier and will proceed to explain the various commands available to you.
 
-\emph{make all} will run all the following make.\\
-\emph{make main} runs our main file src/main.py. Results can be found
-in the outputs folder.\\
-\emph{make graphs} will call src/main.py which will train trees, and generate png graphs of the decision trees, for vizualization purposes,
-for both clean and noisy datasets. You will find these in the graphs folder.
-These are directly compiled in our latex report.\\
-\emph{make report} will compile the report, which will be located in report/report.pdf.\\
+ \colorbox{lightgray}{\emph{make all}} will run all the following make.\\
+ \colorbox{lightgray}{\emph{make main}} runs our main file  \colorbox{lightgray}{src/main.py}. Results can be found
+in the  \colorbox{lightgray}{outputs} folder.\\
+ \colorbox{lightgray}{\emph{make graphs}} will call  \colorbox{lightgray}{src/main.py} which will train trees, and generate png graphs of the decision trees, for vizualization purposes,
+for both clean and noisy datasets. You will find these in the  \colorbox{lightgray}{graphs} folder.
+Those are directly compiled in our latex report.\\
+ \colorbox{lightgray}{\emph{make report}} will compile the report, which will be located in  \colorbox{lightgray}{report/report.pdf}.\\
 
 
 Note that our python main must always be called from the root folder, as filepaths are coded for such purpose.
-We have prepared a template src/test.py file, that you may use when
+We have prepared a template  \colorbox{lightgray}{src/test.py} file, that you may use when
 trying to test our trees on new data.
-Please use \emph{make test} to run it.
+Please use  \colorbox{lightgray}{\emph{make test}} to run it.
 
 
 
