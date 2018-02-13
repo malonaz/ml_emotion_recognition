@@ -7,7 +7,6 @@ identifies an example more often than not. Such observations are more easily inf
 The interest in the confusion matrix lies in examining where the misclassified examples get classified or to be more specific,
 which emotion misappropriates it. 
 
-\newpage
 \include*{report/confusion_matrix_clean}
 
 The above confusion matrix reveals interesting aspects of the clean dataset.
@@ -28,7 +27,7 @@ observe the bigger picture. Here, we can see that Happiness and Surprise are the
 emotions, while Sadness is the least. \\
 
 
-
+\newpage
 We now wish to get the classification error of the model, the model being the combination of our six trees.
 Hence, we choose to treat the model as a blackbox and wish to evaluate the rate at which our model classifies emotions correctly.
 We first compute the average error rate using the following formula.
@@ -39,7 +38,7 @@ Let us now turn to the noisy dataset, in hopes of seeing more questions answered
 
  
 \include*{report/confusion_matrix_noisy}
-\newpage
+
 Confusion matrices make for poor comparison tools when it comes to comparing two datasets.
 Beyond the fact that the two datasets don't have the same number of data points,
 they also do not come in the same proportions for each emotion. For example, there are 132 Anger examples in the clean dataset but only
