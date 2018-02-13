@@ -26,10 +26,10 @@ $(GRAPHS_OBJECTS):
 	mkdir -p output/noisy_dataset
 	python src/main.py
 
-$(GRAPHS_OBJECTS:.dot=.pdf): %.pdf : %.dot
-	dot $< -Tpdf -o $@
+$(GRAPHS_OBJECTS:.dot=.png): %.png : %.dot
+	dot $< -Tpng -o $@
 
-graphs:  $(GRAPHS_OBJECTS:.dot=.pdf)
+graphs:  $(GRAPHS_OBJECTS:.dot=.png)
 
 ### REPORT
 
@@ -41,7 +41,7 @@ REPORT_SRC = report/report.tex report/implementation.tex report/ambiguity.tex \
 report: report/report.pdf
 
 
-report/report.pdf: $(GRAPHS_OBJECTS:.dot=.pdf)  $(REPORT_SRC) 
+report/report.pdf: $(GRAPHS_OBJECTS:.dot=.png)  $(REPORT_SRC) 
 #	pdflatex -interaction=batchmode report/report.tex
 	pdflatex report/report.tex
 	rm -rf $(REPORT_DISCARDED_OUTPUT)
@@ -55,5 +55,5 @@ report/report.pdf: $(GRAPHS_OBJECTS:.dot=.pdf)  $(REPORT_SRC)
 
 
 clean:
-	rm -rf src/*.pyc  output/* $(REPORT_OBJECTS) $(GRAPHS_OBJECTS) $(GRAPHS_OBJECTS:.dot=.pdf)
+	rm -rf src/*.pyc  output/* $(REPORT_OBJECTS) $(GRAPHS_OBJECTS) $(GRAPHS_OBJECTS:.dot=.png)
 
