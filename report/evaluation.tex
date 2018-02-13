@@ -11,7 +11,7 @@ which emotion misappropriates it.
 \include*{report/confusion_matrix_clean}
 
 The above confusion matrix reveals interesting aspects of the clean dataset.
-The Anger decision trees misclassifies over 10\% of Sadness examples as Anger, but only 1\% of Surprise examples.
+The Anger decision tree misclassifies over 10\% of Sadness examples as Anger, but only 1\% of Surprise examples.
 Similarly, the Sadness decision tree misappropriates 10\% of Disgust examples.
 Such patterns emerge upon closer examination of these metrics: Fear is often confused with Surprise, but Happiness is rarely confused with Fear.
 Intuitively, since we are looking at a clean dataset,
@@ -31,7 +31,7 @@ emotions, while Sadness is the least. \\
 
 We now wish to get the classification error of the model, the model being the combination of our six trees.
 Hence, we choose to treat the model as a blackbox and wish to evaluate the rate at which our model classifies emotions correctly.
-We first compute the average error rate using the follow formula.
+We first compute the average error rate using the following formula.
 \include*{report/equations}
 We then compute our classification rate as (1 - the average error rate).
 For the clean dataset, the classification clocks in at 71.6\%.
@@ -42,7 +42,7 @@ Let us now turn to the noisy dataset, in hopes of seeing more questions answered
 \newpage
 Confusion matrices make for poor comparison tools when it comes to comparing two datasets.
 Beyond the fact that the two datasets don't have the same number of data points,
-they also do not come in the same proportion for each emotion. For example, there are 132 Anger examples in the clean dataset but only
+they also do not come in the same proportions for each emotion. For example, there are 132 Anger examples in the clean dataset but only
 88 in the noisy dataset. As such, we abstain from making absolute comparisons and instead discuss patterns within the rows
 of this confusion matrix. We observe again that Anger claims many examples of Sadness but also Fear this time. Perhaps one or two facial
 muscles which are responsible for distinguishing Fear from Sadness, are obfuscated by the noise.
