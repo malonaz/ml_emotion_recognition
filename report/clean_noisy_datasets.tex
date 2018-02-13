@@ -18,15 +18,21 @@ that are exhibited by noise rather than by examples themselves. Let's take a loo
    \label{fig:cleandecisionTree1}
 \end{figure}
 
+The two decision trees above illustrate the overfitting discussion very well.
+As you can see, noisy data uses a lot more attributes to separate examples.
+We know from the clean data that some of these extra attributes are not necessarily needed by the decision tree to identify examples.
+Some of these branches may be formed from too small a dataset to truly represent the population or they may exist due to noise in the data.
 
-
-Here, there is a significant drop across all metrics when switching from the clean to the noisy dataset.
+Going back to the metrics from the evaluation part,
+we can observe a significant drop across all metrics when switching from the clean to the noisy dataset.
 Anger in the clean dataset has an F\textsubscript{1} measure of 64.66\%, versus 27.96\% in the noisy dataset.
 The accuracy almost halves when using the noisy data but taking a closer look at the metrics, we see that the precision
 rate is the stronger culprit in such a low F\textsubscript{1} measure. This implies that the Anger tree is incorrectly claiming
 data points as examples of anger. This may be explained by both poor quality and lack of data.
 
-All emotions retain F\textsubscript{1} values that are proportionally lower to the clean dataset. 
+All emotions retain F\textsubscript{1} values that are lower to the clean dataset. 
 Surprise emotion seems to be the easiest emotion to identify with only a slight decrease of F\textsubscript{1} value with noisy data.
 Since noisy datasets are obtained from automated recognition systems, it seems that computers do a significantly better job
 breaking down the facial muscle components of Happiness than they do breaking down Sadness or Anger. 
+Lastly, Surprise and Disgusts were the emotions that showed the smallest percentage drop in precision and recall rates, perhaps because
+some of the attributes (muscles) that are used when expressing them are very distinctive and persist through noise.
