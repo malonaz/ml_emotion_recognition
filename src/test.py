@@ -15,6 +15,9 @@ def main(dataset = "data/cleandata_students.mat", folder = "test_dataset"):
     # 2. train 6 trees on the dataset
     trained_trees = train_trees(examples, labels)
 
+    # OPTIONAL. if you want to use test trees, here it is. PLease add the data you wish to test the tree on as parameter
+    prediction_vector = test_trees(trained_trees, ADD YOUR EXAMPLES HERE)
+    
     # 3. save trees in pickle format. comment out if you wish to do so
     save_trees_to_pickle(trained_trees, folder)
                 
