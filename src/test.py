@@ -9,7 +9,7 @@ def main(dataset = "data/cleandata_students.mat", folder = "test_dataset"):
     """ dataset should be the filepath to the dataset as observed from root directory.
         Do not change the folder. """
     
-    # 1. get dataset. dataset must be the filepath to the dataset as observed from the root directory
+    # 1. get dataset. 
     examples, labels = load_data(dataset)
 
     # 2. get our pickled trees
