@@ -91,3 +91,18 @@ This results in the best level to prune at being '0' for both datasets and thus 
 The 'cross' method however yields a best level that prunes the trees significantly, especially with the noisy dataset.
 This indicates that there is some level of overfitting present in our tree. This ties in quite well with our previous discussions
 where we expressed our view that emotions with few data points would introduce overfitting.
+
+Let us only consider the 'cross' method diagrams.
+Both the clean and the noisy dataset show a sharp initial drop
+as the first attributes with significant information gain split
+examples. Yet, very some tree size level, the marginal cost drop per
+number of terminal nodes gets smaller and smaller. In fact, for
+the noisy dataset, cost begins to increase past 50 terminal nodes.
+In the clean dataset, cost begins to increase past 22 terminal nodes.
+
+The tree trained on the noisy dataset benefits most from pruning.
+While the pruning benefits for the tree trained on the clean dataset
+might be small, one could argue that the tree's drop in memory size
+is valuable as well.
+This a textbook example of overfitting, and we conclude that pruning
+would benefit both trees, although it would benefit the noisy dataset more.
