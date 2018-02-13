@@ -38,7 +38,7 @@ plot(nodes2(bestLevel2+1),cost2(bestLevel2+1),'ks');
 
 
 
-The \colorbox{lightgray}{\emph{classregtree()}} function takes, in the examples, matrix x, as well as the label matrix y.
+The \emph{classregtree()} function takes, in the examples, matrix x, as well as the label matrix y.
 It then creates a classification tree that predicts the labels using the columns of the examples matrix.\\
 The parameter 'categorical' tells the function to treat the columns of x (the attributes) as unordered categorical variables
 such that each attribute takes on one of a discrete, limited and fixed set of values (here '1' or '0').\\
@@ -50,12 +50,12 @@ The parameters 'prune = off' dictates that there should be no pruning of the tre
 This function is actually different than the way we build trees because our model consists of six trees that each classify a given
 example.
 We then extract a label from these six classifications from the trees, with various methods described in the ambiguity section.
-The  \colorbox{lightgray}{\emph{classregtree()}} function works differently and builds one tree,
+The \emph{classregtree()} function works differently and builds one tree,
 where the leaf nodes are non-binary and instead take on one of the 6 emotion values.
 For the purpose of this discussion, pruning,
 this will not matter as it can be applied to each of our trees to yield better classification rates.
 
-The  \colorbox{lightgray}{\emph{test()}} function removes increasingly more nodes from the tree, in iterations called 'levels'.
+The \emph{test()} function removes increasingly more nodes from the tree, in iterations called 'levels'.
 I could not find online how they define a level and how they decide which nodes to remove,
 but the general pattern is to prune from bottom to top increasingly.
 I believe they used a combination of the depth of a terminal node and the number of examples that lie at this node.
@@ -76,7 +76,7 @@ Again, it is not clear how they compute the standard error of the cost. The thir
 level of pruning. Lastly, the method returns the level as the one that produces the smallest tree that is within one standard
 error of the minimum-cost subtree.
 
-The  \colorbox{lightgray}{\emph{prune()}} function prunes a tree to the given desired level, and returns the pruned tree.
+The \emph{prune()} function prunes a tree to the given desired level, and returns the pruned tree.
 Here it is called twice, once with the best level as per the 'substitution' method and one as per the 'cross' method.
 Below, you will find the diagrams returns by the code snippet.
 
@@ -100,7 +100,7 @@ Below, you will find the diagrams returns by the code snippet.
 
 \newpage
 
-The data used to generate this graph comes from  \colorbox{lightgray}{\emph{test()}} function,
+The data used to generate this graph comes from \emph{test()} function,
 taken from each level, and simply plots the number of terminal nodes at this level versus
 the cost of the tree obtained by pruning to this level.
 In red, you will find the results of the 'resubstitution' method and thus in blue, the results of the 'cross' method.
