@@ -8,7 +8,7 @@ test:
 	python src/test.py
 
 tar:
-	tar -cvf Assignment1.tar data graphs makefile output pickled_trees report src
+	tar -cvf Assignment1.tar report.pdf data graphs makefile output pickled_trees report src
 
 #### FOR GRAPHS 
 
