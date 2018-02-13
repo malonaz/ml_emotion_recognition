@@ -67,25 +67,16 @@ The \emph{prune()} function prunes a tree to the given desired level, and return
 Here it is called twice, once with the best level as per the 'substitution' method and one as per the 'cross' method.
 Below, you will find the diagrams returned by the code snippet.
 
+\begin{figure}[!ht]
+    \centering
+    \caption{Clean vs Noisy Pruning Diagrams}      
+    \subfloat[Clean dataset]{{\includegraphics[scale = 0.25]{graphs/clean_dataset/clean_pruning.png} }}
+    \qquad
+    \subfloat[Noisy dataset]{{\includegraphics[scale = 0.25]{graphs/noisy_dataset/noisy_pruning.png} }}
 
+    \label{fig:clean_and_noisy_pruning}
+\end{figure}
 
-\begin{figure}[h]
-    \caption{Clean dataset}
-    \begin{center}
-  \includegraphics[scale = 0.30]{graphs/clean_dataset/clean_pruning.png}
- \end{center}
-  \end{figure}
-
-
- \begin{figure}[h]
-    \begin{center}
-    \caption{Noisy dataset}
-  \includegraphics[scale = 0.30]{graphs/noisy_dataset/noisy_pruning.png} 
- \end{center}
-
-  \end{figure}
-
-\newpage
 
 The data used to generate these graph comes from \emph{test()} function,
 taken from each level, and simply plots the number of terminal nodes at this level versus
