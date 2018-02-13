@@ -66,11 +66,11 @@ in each fold. I could not find which metric they use to extract a cost from the 
 like the average error rate.\\
 If 'substitution' is the parameter, the cost of the tree is computed as the sum over all of this level's terminal
 nodes of a node's estimated probability times its cost.
-A node's cost is is the sum of the misclassification costs of the examples at that node.
+A node's cost is the sum of the misclassification costs of the examples at that node.
 Again, I could not find how they define misclassification costs.
 Note that the resubstitution cost is computed from the same sample that was used to train the tree as opposed to the cross-validation
 cost method.\\
-The method returns three vector, each of size equal to the number of levels of pruning. The first vector, cost, contains a cost
+The method returns three vectors, each of size equal to the number of levels of pruning. The first vector, cost, contains a cost
 of the tree for each level of pruning. The second vector contains the standard error of each cost value from the first vector.
 Again, it is not clear how they compute the standard error of the cost. The third vector simply lists the number of nodes at each
 level of pruning. Lastly, the method returns the level as the one that produces the smallest tree that is within one standard
@@ -111,5 +111,5 @@ using the holdout fold that was not used to train the tree.
 Furthermore, the 'resubstitution' method costs stricly decrease as the number of terminal nodes increases.
 This results in the best level to prune at being '0' for both datasets and thus no pruning at all occurs.\\
 The 'cross' method however yields a best level that prunes the trees significantly, especially with the noisy dataset.
-This indicates that there is some level of overfitting present in our tree. This ties in quiet well with our previous discussions
-where we expressed our view emotions with few data points would introduce overfitting.
+This indicates that there is some level of overfitting present in our tree. This ties in quite well with our previous discussions
+where we expressed our view that emotions with few data points would introduce overfitting.
