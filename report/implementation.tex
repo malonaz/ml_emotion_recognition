@@ -7,9 +7,9 @@ and returns two matrices containing the examples and labels, respectively. \\
 Second, the  \emph{get\_binary\_targets()} function, maps a matrix of labels to a matrix of binary targets for a chosen emotion,
 such that a '1' indicates that a label represents this emotion and a '0' indicates otherwise.
 
-{\underline{Module 2: Decision Tree Structure} \\
+\underline{Module 2: Decision Tree Structure} \\
 This module contains the structure of a decision tree, which is made up of two types of objects. \\
-The  \colorbox{\emph{Node} class represents an internal (non-leaf) node in the decision tree and is completely characterized by the attribute
+The \emph{Node} class represents an internal (non-leaf) node in the decision tree and is completely characterized by the attribute
 this node is testing as well as a kids array containing any children of this node. In this coursework, there are two children
 in an internal node, one for examples that test negative for this node's attribute and one for examples that test positive.
 In addition, each \emph{node} has an id member used for graph generation purposes.
@@ -21,7 +21,7 @@ a '0' or a '1' representing the decision of the tree.
 Lastly, it overrides the evaluate method of the \emph{Decision Tree}, as there is no recursion at a leaf node, it simply returns its class label.\\
 
 
-{\underline{Module 3: Training Decision Trees} \\
+\underline{Module 3: Training Decision Trees} \\
 Let us begin this module's discussion with the implementation of  \emph{choose\_best\_decision\_attribute()}. \\
 First, when seeking the best attribute to split the current node's examples on, we do not maximize the information gain.
 Instead, we minimize the information remainder (i.e. the average entropy of the two children nodes
