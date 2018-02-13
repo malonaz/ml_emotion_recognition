@@ -13,7 +13,7 @@ def main(dataset = "data/cleandata_students.mat", folder = "test_dataset"):
     examples, labels = load_data(dataset)
 
     # 2. get our pickled trees
-    trained_trees = load_all_trees()
+    trained_clean_trees, trained_noisy_trees = load_all_trees()
 
     # 3. get prediction vector using test_trees
     predictions = test_trees(trained_trees, examples)
