@@ -29,7 +29,9 @@ def main(dataset = "data/cleandata_students.mat", folder = "test_dataset"):
 
     # 11. get F_1 measures
     f1_measures = get_f_measures(recall_rates, precision_rates)
-    
+
+    # 12. get classification rate
+    classification_rate = 1 - average_error_rate
 
 
     
