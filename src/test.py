@@ -20,9 +20,13 @@ def main(dataset = "data/cleandata_students.mat", folder = "test_dataset"):
 
     # 4. get average error rate
     average_error_rate  = get_error_rate(predictions, labels)
+    print "average error rate: ", average_error_rate * 100
     
     # 5. get classification rate
     classification_rate = 1 - average_error_rate
+    print "classification rate: ", classification rate
+
+
 
 
     
