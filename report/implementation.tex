@@ -1,13 +1,13 @@
 We have divided the program into four modules. Let us walk through each module's functionality \& purpose.
 
-\textbf{\underline{Module 1: Loading the Data}} \\
+\underline{Module 1: Loading the Data} \\
 This module serves two purposes.\\
 First, its  \colorbox{lightgray}{\emph{load\_data()}} function extracts the data from one of the two datasets
 and returns two matrices containing the examples and labels, respectively. \\
 Second, the  \colorbox{lightgray}{\emph{get\_binary\_targets()}} function, maps a matrix of labels to a matrix of binary targets for a chosen emotion,
 such that a '1' indicates that a label represents this emotion and a '0' indicates otherwise.
 
-\textbf{\underline{Module 2: Decision Tree Structure}} \\
+{\underline{Module 2: Decision Tree Structure} \\
 This module contains the structure of a decision tree, which is made up of two types of objects. \\
 The  \colorbox{lightgray}{\emph{Node}} class represents an internal (non-leaf) node in the decision tree and is completely characterized by the attribute
 this node is testing as well as a kids array containing any children of this node. In this coursework, there are two children
@@ -21,7 +21,7 @@ a '0' or a '1' representing the decision of the tree.
 Lastly, it overrides the evaluate method of the \emph{Decision Tree}, as there is no recursion at a leaf node, it simply returns its class label.\\
 
 
-\textbf{\underline{Module 3: Training Decision Trees}} \\
+{\underline{Module 3: Training Decision Trees} \\
 Let us begin this module's discussion with the implementation of  \colorbox{lightgray}{\emph{choose\_best\_decision\_attribute()}}. \\
 First, when seeking the best attribute to split the current node's examples on, we do not maximize the information gain.
 Instead, we minimize the information remainder (i.e. the average entropy of the two children nodes
@@ -41,7 +41,7 @@ and returns six trained trees, one for each emotion.
 Lastly, we have a function  \colorbox{lightgray}{\emph{vizualize\_trees()}} that takes a list of trees and generates a \textbf{graph dot} file
 for each tree.
 
-\textbf{\underline{Module 4: Evaluation}} \\
+{\underline{Module 4: Evaluation} \\
 \colorbox{lightgray}{\emph{test\_trees()}} takes trained trees and a list of examples to return a vector label predictions.\\
 \colorbox{lightgray}{\emph{get\_error\_rate()}} returns the error rates of predictions versus their true values, as dictated by the specs.\\
 \colorbox{lightgray}{\emph{get\_k\_folds()}} creates k folds from the given examples and labels. The k folds obtained are always the same
