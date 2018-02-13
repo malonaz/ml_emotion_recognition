@@ -42,7 +42,8 @@ report: report/report.pdf
 
 
 report/report.pdf: $(GRAPHS_OBJECTS:.dot=.pdf)  $(REPORT_SRC) 
-	pdflatex -interaction=batchmode report/report.tex
+#	pdflatex -interaction=batchmode report/report.tex
+	pdflatex report/report.tex
 	rm -rf $(REPORT_DISCARDED_OUTPUT)
 	mv report.pdf report
 
