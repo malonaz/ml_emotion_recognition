@@ -2,6 +2,8 @@ In this section, we will attempt to evaluate our decision tree model. We begin b
 in order to assess the precision and accuracy of our model. 
 
 Let's take a closer look at the average confusion matrices of the datasets.
+Note that the following metrics correspond to the random method of combining trees to create results.
+We discuss the results of other methods in the Ambiguity section.
 The relatively high numbers on the diagonal indicate that each emotion's decision tree correctly
 identifies an example more often than not. Such observations are more easily infered from metrics such as the precision or recall rate.
 The interest in the confusion matrix lies in examining where the misclassified examples get classified or to be more specific,
@@ -33,7 +35,7 @@ Hence, we choose to treat the model as a blackbox and wish to evaluate the rate 
 We first compute the average error rate using the following formula.
 \include*{report/equations}
 We then compute our classification rate as (1 - the average error rate).
-For the clean dataset, the classification clocks in at 71.6\%.
+For the clean dataset, the classification clocks in at 73\%.
 Let us now turn to the noisy dataset, in hopes of seeing more questions answered.
 
  
@@ -52,7 +54,7 @@ It seems that the noise has exacerbated patterns exhibited in the clean dataset.
 The F\textsubscript{1} measure rates for Anger and Sadness tumble to a paltry $\sim$28\% and $\sim$38\% respectively.
 It seems the few attributes that allowed some identification of these emotions do not survive the noise.
 Happiness and Surprise remain well identified, albeit at a lower percentage.
-We observe an average classification rate of 60.6\% for the noisy dataset.
+We observe an average classification rate of 58\% for the noisy dataset.
 
 
 We can see that trees trained on the clean, or noisy dataset, share similar patterns.
