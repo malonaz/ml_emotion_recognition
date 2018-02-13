@@ -4,6 +4,9 @@ perform at the same level as trees trained with clean datasets. Here the noisy d
 inferior in quality. This is a situation prone to overfitting and we must introduce pruning methods in order to disregard attributes
 that are exhibited by noise rather than by examples themselves.
 
+Here, there is a significant drop across all metrics when switching from the clean to the noisy dataset.
+
+
 Anger in the clean dataset has an F\textsubscript{1} measure of 64.66\%, versus 27.96\% in the noisy dataset.
 The accuracy almost halves when using the noisy data but taking a closer look at the metrics, we see that the precision
 rate is the stronger culprit in such a low F\textsubscript{1} measure. This implies that the Anger tree is incorrectly claiming
